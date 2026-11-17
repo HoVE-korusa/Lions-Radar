@@ -12,14 +12,14 @@ KST = timezone(timedelta(hours=9))
 DATA_PATH = "public/data.json"
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Linux; Android 14; SM-S928N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
     "Accept-Language": "ko-KR,ko;q=0.9",
     "Referer": "https://m.sports.naver.com/kbaseball/news"
 }
 
 YOUTUBE_CHANNELS = {
-    "lions_tv": "UCKP8I92724p5v571U6i25wA",         # 라이온즈티비
-    "kbo_highlights": "UCoVz66yWHzVsXAFG8WhJK9g",  # KBO 공식채널
+    "lions_tv": "UCKP8I92724p5v571U6i25wA",         # 라이온즈티비 (@lionstv1982)
+    "kbo_highlights": "UCoVz66yWHzVsXAFG8WhJK9g",  # KBO 공식채널 (@kbo1982)
     "foreign_scouting": "UCQlxOv_3-nIpA352Afgdglw" # 아시아리그 용병 하이라이트
 }
 
@@ -43,22 +43,7 @@ def load_existing_data():
         "kbo_news": [],
         "youtube": {
             "lions_tv": [],
-            "kbo_highlights": [
-                {
-                    "video_id": "UEmCp0A-EGI",
-                    "title": "[KT위즈 vs 삼성라이온즈] 11.08(일) KS 5차전 하이라이트｜2026 신한 SOL KBO 포스트시즌｜한국시리즈 5차전｜KBO X TVING",
-                    "published": "2026-11-08",
-                    "thumbnail": "https://i.ytimg.com/vi/UEmCp0A-EGI/hqdefault.jpg",
-                    "url": "https://youtu.be/UEmCp0A-EGI"
-                },
-                {
-                    "video_id": "h2Wuj_98msA",
-                    "title": "[두산베어스 vs 삼성라이온즈] 10.3(토) 야구 하이라이트｜2026 KBO 리그｜KBO X TVING",
-                    "published": "2026-10-03",
-                    "thumbnail": "https://i.ytimg.com/vi/h2Wuj_98msA/hqdefault.jpg",
-                    "url": "https://youtu.be/h2Wuj_98msA"
-                }
-            ],
+            "kbo_highlights": [],
             "foreign_scouting": []
         },
         "community_rumors": [],
@@ -74,7 +59,7 @@ def extract_badge(title: str) -> str:
     if "트레이드" in title: return "트레이드"
     return "일반"
 
-# 1. 네이버 스포츠 뉴스 수집 (최근 3일 순차 조회 + Google News RSS 이중 안전장치)
+# 1. 네이버 스포츠 뉴스 수집
 async def fetch_naver_news(client: httpx.AsyncClient, db: dict):
     ss_collected = []
     kbo_collected = []
@@ -129,7 +114,6 @@ async def fetch_naver_news(client: httpx.AsyncClient, db: dict):
         except Exception as e:
             print(f"[Naver API Notice] {e}")
 
-    # 만약 네이버 게이트웨이가 응답하지 않으면 실시간 뉴스 RSS로 즉시 보충
     if not ss_collected:
         try:
             rss_res = await client.get("https://news.google.com/rss/search?q=%EC%82%BC%EC%84%B1+%EB%9D%BC%EC%9D%B4%EC%98%A8%EC%A6%88+%EC%95%BC%EA%B5%AC&hl=ko&gl=KR&ceid=KR:ko", headers=HEADERS)
@@ -175,7 +159,43 @@ async def fetch_naver_news(client: httpx.AsyncClient, db: dict):
     if kbo_collected:
         db["kbo_news"] = kbo_collected[:10]
 
-# 2. 유튜브 3개 채널 RSS (KBO 채널은 지정된 하이라이트 타이틀 포맷만 엄격 필터링)
+# 2. KBO 공식 채널 하이라이트 전용 심층 검색 (YouTube RSS 15개 한계를 넘어 채널 내 하이라이트 전체 수집)
+async def fetch_kbo_highlights_deep(client: httpx.AsyncClient) -> list:
+    queries = [
+        "https://www.youtube.com/@kbo1982/search?query=%ED%95%98%EC%9D%B4%EB%9D%BC%EC%9D%B4%ED%8A%B8%EF%BD%9C2026+%EC%8B%A0%ED%95%9C+SOL+KBO+%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%8B%9C%EC%A6%8C",
+        "https://www.youtube.com/@kbo1982/search?query=%ED%95%98%EC%9D%B4%EB%9D%BC%EC%9D%B4%ED%8A%B8%EF%BD%9C2026+KBO+%EB%A6%AC%EA%B7%B8"
+    ]
+    collected = []
+    seen = set()
+
+    for url in queries:
+        try:
+            res = await client.get(url, headers=HEADERS)
+            if res.status_code != 200:
+                continue
+            # YouTube 초기 데이터 JSON에서 videoRenderer 블록 추출
+            pattern = r'"videoRenderer":\{"videoId":"([a-zA-Z0-9_-]{11})".*?"title":\{"runs":\[\{"text":"([^"]+)"\}'
+            matches = re.findall(pattern, res.text)
+            for vid, raw_title in matches:
+                title = raw_title.encode("utf-8").decode("unicode_escape") if "\u" in raw_title else raw_title
+                if vid not in seen and is_official_kbo_highlight(title):
+                    seen.add(vid)
+                    # 제목에서 날짜(예: 11.08, 10.3 등) 추출 표시
+                    date_match = re.search(r'(\d{1,2}\.\d{1,2}\([^)]+\))', title)
+                    pub_label = date_match.group(1) if date_match else "2026 시즌"
+                    collected.append({
+                        "video_id": vid,
+                        "title": title,
+                        "published": pub_label,
+                        "thumbnail": f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
+                        "url": f"https://www.youtube.com/watch?v={vid}"
+                    })
+        except Exception as e:
+            print(f"[KBO Deep Search Error] {e}")
+
+    return collected[:20]
+
+# 3. 유튜브 3개 채널 수집 (일반 RSS + KBO 채널 딥서치 병합)
 async def fetch_youtube(client: httpx.AsyncClient, db: dict):
     for key, ch_id in YOUTUBE_CHANNELS.items():
         url = f"https://www.youtube.com/feeds/videos.xml?channel_id={ch_id}"
@@ -196,22 +216,27 @@ async def fetch_youtube(client: httpx.AsyncClient, db: dict):
                         "thumbnail": f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
                         "url": entry.link
                     })
-                if key == "kbo_highlights":
-                    existing = db["youtube"].get("kbo_highlights", [])
-                    merged = videos + existing
-                    seen = set()
-                    deduped = []
-                    for v in merged:
-                        if v["video_id"] not in seen and is_official_kbo_highlight(v["title"]):
-                            seen.add(v["video_id"])
-                            deduped.append(v)
-                    db["youtube"]["kbo_highlights"] = deduped[:12]
-                elif videos:
+                if key != "kbo_highlights" and videos:
                     db["youtube"][key] = videos[:8]
+                elif key == "kbo_highlights" and videos:
+                    db["youtube"]["kbo_highlights"] = videos
         except Exception as e:
-            print(f"[YouTube Error - {key}] {e}")
+            print(f"[YouTube RSS Error - {key}] {e}")
 
-# 3. 커뮤니티 찌라시 & 경기움짤/영상 수집
+    # KBO 하이라이트는 RSS(최근 15개 제한) 외에 채널 검색 결과를 병합해 풍부하게 채움
+    deep_kbo = await fetch_kbo_highlights_deep(client)
+    merged = (db["youtube"].get("kbo_highlights") or []) + deep_kbo
+    seen = set()
+    final_kbo = []
+    for v in merged:
+        vid = v.get("video_id")
+        if vid and vid not in seen and is_official_kbo_highlight(v.get("title", "")):
+            seen.add(vid)
+            final_kbo.append(v)
+    if final_kbo:
+        db["youtube"]["kbo_highlights"] = final_kbo[:20]
+
+# 4. 커뮤니티 찌라시 & 경기움짤/영상 수집
 def fetch_community_board(category: str, target_key: str, db: dict):
     url = f"https://www.fmkorea.com/index.php?mid=baseball&category={category}"
     try:
@@ -248,7 +273,7 @@ def fetch_community_board(category: str, target_key: str, db: dict):
     except Exception as e:
         print(f"[Board Error - {target_key}] {e}")
 
-# 4. 고3야구 (go3base.com)
+# 5. 고3야구 (go3base.com)
 async def fetch_go3base(client: httpx.AsyncClient, db: dict):
     try:
         res = await client.get("https://www.go3base.com/", headers=HEADERS)

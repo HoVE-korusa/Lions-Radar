@@ -436,22 +436,7 @@
       kboNews: [],
       youtube: {
         lions_tv: [],
-        kbo_highlights: [
-          {
-            video_id: 'UEmCp0A-EGI',
-            title: '[KT위즈 vs 삼성라이온즈] 11.08(일) KS 5차전 하이라이트｜2026 신한 SOL KBO 포스트시즌｜한국시리즈 5차전｜KBO X TVING',
-            published: '2026-11-08',
-            thumbnail: 'https://i.ytimg.com/vi/UEmCp0A-EGI/hqdefault.jpg',
-            url: 'https://youtu.be/UEmCp0A-EGI'
-          },
-          {
-            video_id: 'h2Wuj_98msA',
-            title: '[두산베어스 vs 삼성라이온즈] 10.3(토) 야구 하이라이트｜2026 KBO 리그｜KBO X TVING',
-            published: '2026-10-03',
-            thumbnail: 'https://i.ytimg.com/vi/h2Wuj_98msA/hqdefault.jpg',
-            url: 'https://youtu.be/h2Wuj_98msA'
-          }
-        ],
+        kbo_highlights: [],
         foreign_scouting: []
       },
       communityRumors: [],
@@ -580,12 +565,12 @@
 
       container.innerHTML = list.map(v => `
         <div class="bg-slate-800/60 border border-slate-800 hover:border-lions-light rounded-xl overflow-hidden group flex flex-col transition">
-          <div class="relative aspect-video bg-slate-950 cursor-pointer overflow-hidden" onclick="openVideoModal('${v.video_id}', '${(v.title || '').replace(/'/g, "\'")}', '${v.url}')">
+          <a href="https://www.youtube.com/watch?v=${v.video_id}" target="_blank" rel="noopener noreferrer" class="relative block aspect-video bg-slate-950 cursor-pointer overflow-hidden">
             <img src="${v.thumbnail}" alt="${v.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" />
             <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 flex items-center justify-center transition">
               <span class="w-10 h-10 rounded-full bg-lions/90 text-white flex items-center justify-center text-sm shadow-lg">▶</span>
             </div>
-          </div>
+          </a>
           <div class="p-3 flex-1 flex flex-col justify-between">
             <a href="${v.url}" target="_blank" rel="noopener" class="font-semibold text-xs sm:text-sm text-slate-200 group-hover:text-sky-400 line-clamp-2 leading-snug mb-2">
               ${v.title}
@@ -902,13 +887,8 @@
     }
 
     function openVideoModal(videoId, title, fallbackUrl) {
-      if (!videoId) {
-        window.open(fallbackUrl, '_blank', 'noopener');
-        return;
-      }
-      document.getElementById('modal-video-title').textContent = title;
-      document.getElementById('modal-iframe').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-      document.getElementById('video-modal').classList.remove('hidden');
+      const targetUrl = videoId ? `https://www.youtube.com/watch?v=${videoId}` : fallbackUrl;
+      window.open(targetUrl, '_blank', 'noopener,noreferrer');
     }
 
     function closeVideoModal() {
