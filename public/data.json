@@ -1,11 +1,118 @@
 {
-  "last_updated": "초기 데이터 (GitHub Actions 실행 시 자동 갱신)",
+  "last_updated": "2026-11-17 20:15:18",
   "samsung_news": [],
   "kbo_news": [],
   "youtube": {
     "lions_tv": [],
-    "kbo_highlights": [],
-    "foreign_scouting": []
+    "kbo_highlights": [
+      {
+        "video_id": "xRONYVPkA4Y",
+        "title": "[대한민국 vs 일본] 11.15(일) APBC 결승전 하이라이트 | 2026 APBC",
+        "published": "2026-11-15",
+        "thumbnail": "https://i.ytimg.com/vi/xRONYVPkA4Y/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=xRONYVPkA4Y"
+      },
+      {
+        "video_id": "usYtiEo4y9w",
+        "title": "[대만 vs 대한민국] 11.14(토) APBC 하이라이트 | 2026 APBC",
+        "published": "2026-11-14",
+        "thumbnail": "https://i.ytimg.com/vi/usYtiEo4y9w/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=usYtiEo4y9w"
+      },
+      {
+        "video_id": "U7ZeuIoihXQ",
+        "title": "대만전 6이닝 9K! 퀄리티 스타트를 기록한 이로운의 탈삼진 모음집! | 대만 vs 대한민국 | 11.14 | 크보모먼트 | 2026 APBC",
+        "published": "2026-11-14",
+        "thumbnail": "https://i.ytimg.com/vi/U7ZeuIoihXQ/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=U7ZeuIoihXQ"
+      },
+      {
+        "video_id": "gAqkYcGeu0A",
+        "title": "대한민국 박정민이 9회 초를 막아내며 승리를 지켜냅니다! | 대만 vs 대한민국 | 11.14 | 크보모먼트 | 2026 APBC",
+        "published": "2026-11-14",
+        "thumbnail": "https://i.ytimg.com/vi/gAqkYcGeu0A/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=gAqkYcGeu0A"
+      },
+      {
+        "video_id": "TEwoBlPbijg",
+        "title": "맞는 순간 알 수 있던 대한민국 문정빈의 솔로 홈런! | 대만 vs 대한민국 | 11.14 | 크보모먼트 | 2026 APBC",
+        "published": "2026-11-14",
+        "thumbnail": "https://i.ytimg.com/vi/TEwoBlPbijg/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=TEwoBlPbijg"
+      },
+      {
+        "video_id": "qYirpO4AEV0",
+        "title": "대한민국 조형우의 2루타와 박재현의 적시 2루타로 한점 더 달아납니다! | 대만 vs 대한민국 | 11.14 | 크보모먼트 | 2026 APBC",
+        "published": "2026-11-14",
+        "thumbnail": "https://i.ytimg.com/vi/qYirpO4AEV0/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=qYirpO4AEV0"
+      },
+      {
+        "video_id": "AXMRQOQjkm8",
+        "title": "다시 리드를 가져오는 대한민국 김도영의 솔로 홈런! | 대만 vs 대한민국 | 11.14 | 크보모먼트 | 2026 APBC",
+        "published": "2026-11-14",
+        "thumbnail": "https://i.ytimg.com/vi/AXMRQOQjkm8/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=AXMRQOQjkm8"
+      }
+    ],
+    "foreign_scouting": [
+      {
+        "video_id": "gT_6C-Tu2S8",
+        "title": "ジョーイ・エステス (Joey Estes) 2026年全球種別投球",
+        "published": "2026-11-16",
+        "thumbnail": "https://i.ytimg.com/vi/gT_6C-Tu2S8/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=gT_6C-Tu2S8"
+      },
+      {
+        "video_id": "ec9jAvAddik",
+        "title": "阪神がテスト ネルフリ・パヤノ (Nelfri Payano) 2026年Single-Aでの投球",
+        "published": "2026-11-15",
+        "thumbnail": "https://i.ytimg.com/vi/ec9jAvAddik/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=ec9jAvAddik"
+      },
+      {
+        "video_id": "VXOk5ub2E7M",
+        "title": "NPB球団と契約へ タナー・レイニー (Tanner Rainey) 2026年全球種別投球",
+        "published": "2026-11-15",
+        "thumbnail": "https://i.ytimg.com/vi/VXOk5ub2E7M/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=VXOk5ub2E7M"
+      },
+      {
+        "video_id": "4-Cdevo-crw",
+        "title": "ニック・ガルシア (Nick Garcia) 2026年3Aでの投球",
+        "published": "2026-11-11",
+        "thumbnail": "https://i.ytimg.com/vi/4-Cdevo-crw/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=4-Cdevo-crw"
+      },
+      {
+        "video_id": "DuoB7vbPEWU",
+        "title": "阪神がテスト ジョニー・ヒメネス (Jhonny Jimenez) 2026年Single-Aでの投球",
+        "published": "2026-11-10",
+        "thumbnail": "https://i.ytimg.com/vi/DuoB7vbPEWU/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=DuoB7vbPEWU"
+      },
+      {
+        "video_id": "en7HxevvshU",
+        "title": "阪神がテスト デービッド・ランデタ (David Landeta) 2025年Single-Aでの投球",
+        "published": "2026-11-10",
+        "thumbnail": "https://i.ytimg.com/vi/en7HxevvshU/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=en7HxevvshU"
+      },
+      {
+        "video_id": "yS972e21b3Y",
+        "title": "DeNAが獲得へ ネルソン・ベラスケス DeNA在籍経験者との対戦集(打席内全投球)",
+        "published": "2026-11-10",
+        "thumbnail": "https://i.ytimg.com/vi/yS972e21b3Y/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=yS972e21b3Y"
+      },
+      {
+        "video_id": "Dkz4D-we0Jc",
+        "title": "阪神がテスト エリック・パルディーニョ (Eric Pardinho) NPB在籍経験者との対戦集(打席内全投球)",
+        "published": "2026-11-10",
+        "thumbnail": "https://i.ytimg.com/vi/Dkz4D-we0Jc/hqdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=Dkz4D-we0Jc"
+      }
+    ]
   },
   "community_rumors": [],
   "game_gifs": [],
