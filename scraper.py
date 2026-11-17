@@ -177,7 +177,7 @@ async def fetch_kbo_highlights_deep(client: httpx.AsyncClient) -> list:
             pattern = r'"videoRenderer":\{"videoId":"([a-zA-Z0-9_-]{11})".*?"title":\{"runs":\[\{"text":"([^"]+)"\}'
             matches = re.findall(pattern, res.text)
             for vid, raw_title in matches:
-                title = raw_title.encode("utf-8").decode("unicode_escape") if "\u" in raw_title else raw_title
+                title = raw_title.replace(r'\"', '"')
                 if vid not in seen and is_official_kbo_highlight(title):
                     seen.add(vid)
                     # 제목에서 날짜(예: 11.08, 10.3 등) 추출 표시
