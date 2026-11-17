@@ -75,11 +75,11 @@
             <h1 class="font-extrabold text-base sm:text-lg tracking-tight text-white">LIONS RADAR</h1>
             <span id="live-status-badge" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span id="live-status-text">LIVE 동기화</span>
+              <span id="live-status-text">실시간 연동</span>
             </span>
           </div>
           <p class="text-[11px] text-slate-400">
-            최근 수집: <span id="last-sync-time" class="text-slate-300 font-medium">데이터 확인 중...</span>
+            최근 동기화: <span id="last-sync-time" class="text-slate-300 font-medium">데이터 확인 중...</span>
           </p>
         </div>
       </div>
@@ -98,14 +98,25 @@
 
         <button
           id="btn-refresh"
-          onclick="loadLiveDashboardData(true)"
-          class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 flex items-center gap-1.5 transition shrink-0"
-          title="데이터 새로고침"
+          onclick="syncAllData(true)"
+          class="px-2.5 py-1.5 rounded-lg bg-lions hover:bg-lions-light text-xs font-bold text-white flex items-center gap-1.5 transition shrink-0 shadow"
+          title="실시간 데이터 새로고침"
         >
           <span id="refresh-icon">🔄</span>
           <span class="hidden md:inline">새로고침</span>
         </button>
       </div>
+    </div>
+
+    <!-- 원터치 외부 사이트 퀵 순찰 바 -->
+    <div class="max-w-[1600px] mx-auto px-3 sm:px-6 py-1.5 flex items-center gap-1.5 overflow-x-auto no-scrollbar border-t border-slate-800/70 bg-slate-950/50 text-[11px]">
+      <span class="text-slate-400 font-semibold shrink-0 mr-1">⚡ 원문 직행:</span>
+      <a href="https://m.sports.naver.com/kbaseball/news?sectionId=kbo&team=SS&sort=latest&isPhoto=N" target="_blank" rel="noopener" class="px-2 py-0.5 rounded bg-lions/25 text-sky-300 border border-lions-light/30 font-semibold shrink-0 hover:bg-lions/40">🦁 삼성 최신뉴스 ↗</a>
+      <a href="https://m.sports.naver.com/kbaseball/news" target="_blank" rel="noopener" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 shrink-0 hover:bg-slate-700">⚾ 네이버 야구뉴스 ↗</a>
+      <a href="https://x.com/i/lists/2122643880348893278?s=20" target="_blank" rel="noopener" class="px-2 py-0.5 rounded bg-slate-800 text-sky-300 shrink-0 hover:bg-slate-700">𝕏 기자 리스트 ↗</a>
+      <a href="https://www.fmkorea.com/index.php?mid=baseball&category=4392770108" target="_blank" rel="noopener" class="px-2 py-0.5 rounded bg-slate-800 text-amber-300 shrink-0 hover:bg-slate-700">📡 커뮤니티 찌라시 ↗</a>
+      <a href="https://www.fmkorea.com/index.php?mid=baseball&category=741054949" target="_blank" rel="noopener" class="px-2 py-0.5 rounded bg-slate-800 text-emerald-300 shrink-0 hover:bg-slate-700">🔥 경기움짤/영상 ↗</a>
+      <a href="https://www.go3base.com/" target="_blank" rel="noopener" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 shrink-0 hover:bg-slate-700">🧢 고3야구(go3base) ↗</a>
     </div>
 
     <!-- 메인 네비게이션 탭 & 빠른 키워드 칩 -->
@@ -123,7 +134,6 @@
         <button onclick="switchTab('bookmarks')" data-tab="bookmarks" class="tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-400 hover:text-white whitespace-nowrap transition">
           ⭐ 스크랩 <span id="bookmark-count" class="ml-0.5 px-1.5 py-0.2 rounded-full bg-slate-800 text-[11px] text-amber-400">0</span>
         </button>
-        <!-- 모바일 전용: 기자X & 커뮤니티 찌라시 탭 -->
         <button onclick="switchTab('radar-mobile')" data-tab="radar-mobile" class="tab-btn xl:hidden px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-400 hover:text-white whitespace-nowrap transition">
           📡 기자X·커뮤니티 찌라시
         </button>
@@ -131,8 +141,8 @@
 
       <!-- 핵심 키워드 원터치 필터 -->
       <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1.5 border-t sm:border-t-0 border-slate-800/60 w-full sm:w-auto">
-        <span class="text-[11px] text-slate-400 shrink-0 mr-1">빠른필터:</span>
-        <button onclick="setKeywordFilter('ALL')" data-kw="ALL" class="kw-chip px-2 py-0.5 rounded text-[11px] font-bold bg-lions-light text-white shrink-0">전체</button>
+        <span class="text-[11px] text-slate-400 shrink-0 mr-1">키워드 강조/필터:</span>
+        <button onclick="setKeywordFilter('ALL')" data-kw="ALL" class="kw-chip px-2 py-0.5 rounded text-[11px] font-bold bg-lions-light text-white shrink-0">전체보기</button>
         <button onclick="setKeywordFilter('단독')" data-kw="단독" class="kw-chip px-2 py-0.5 rounded text-[11px] font-medium bg-slate-800 text-rose-400 border border-rose-500/30 shrink-0">#단독</button>
         <button onclick="setKeywordFilter('오피셜')" data-kw="오피셜" class="kw-chip px-2 py-0.5 rounded text-[11px] font-medium bg-slate-800 text-emerald-400 border border-emerald-500/30 shrink-0">#오피셜</button>
         <button onclick="setKeywordFilter('FA')" data-kw="FA" class="kw-chip px-2 py-0.5 rounded text-[11px] font-medium bg-slate-800 text-amber-300 border border-amber-500/30 shrink-0">#FA·계약</button>
@@ -166,12 +176,12 @@
                 <span>요약 함께 보기</span>
               </label>
               <a href="https://m.sports.naver.com/kbaseball/news?sectionId=kbo&team=SS&sort=latest&isPhoto=N" target="_blank" rel="noopener" class="text-xs text-sky-400 hover:underline ml-2">
-                네이버 원문 더보기 ↗
+                네이버 삼성뉴스 원문 ↗
               </a>
             </div>
           </div>
 
-          <div id="samsung-news-list" class="divide-y divide-slate-800/70 max-h-[620px] overflow-y-auto pr-1"></div>
+          <div id="samsung-news-list" class="divide-y divide-slate-800/70 max-h-[640px] overflow-y-auto pr-1"></div>
         </div>
 
         <!-- 1-2. 라이온즈티비 최신 업로드 -->
@@ -188,15 +198,15 @@
           <div id="lionstv-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5"></div>
         </div>
 
-        <!-- 1-3. KBO 전체 주요 뉴스 -->
+        <!-- 1-3. 네이버 KBO 전체 최신 뉴스 -->
         <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5">
           <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
             <div class="flex items-center gap-2">
               <span class="w-2 h-4 rounded-full bg-slate-500"></span>
-              <h2 class="font-bold text-sm sm:text-base text-slate-200">KBO 타 구단 & 리그 주요 뉴스 (요약)</h2>
+              <h2 class="font-bold text-sm sm:text-base text-slate-200">네이버 야구 최신 뉴스 (KBO 종합)</h2>
             </div>
-            <a href="https://m.sports.naver.com/kbaseball/news" target="_blank" rel="noopener" class="text-xs text-slate-400 hover:text-white">
-              KBO 뉴스 전체 ↗
+            <a href="https://m.sports.naver.com/kbaseball/news" target="_blank" rel="noopener" class="text-xs text-sky-400 hover:underline">
+              네이버 야구뉴스 전체 ↗
             </a>
           </div>
           <div id="kbo-news-list" class="divide-y divide-slate-800/60"></div>
@@ -213,7 +223,7 @@
               <h2 class="font-bold text-base sm:text-lg text-white flex items-center gap-2">
                 <span>🌎</span> KBO/NPB 타겟 외국인 선수 하이라이트
               </h2>
-              <p class="text-xs text-slate-400 mt-0.5">아시아 리그 진출 가능성이 있는 투수·타자 스카우팅 영상 피드</p>
+              <p class="text-xs text-slate-400 mt-0.5">아시아 리그 진출 가능성이 있는 용병 투수·타자 영상 피드</p>
             </div>
             <a href="https://youtube.com/channel/UCQlxOv_3-nIpA352Afgdglw" target="_blank" rel="noopener" class="text-xs text-sky-400 hover:underline">
               유튜브 채널 열기 ↗
@@ -227,13 +237,13 @@
           <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-slate-800">
             <div>
               <h2 class="font-bold text-base sm:text-lg text-white flex items-center gap-2">
-                <span>⚾</span> 우리들의 스카우팅 (go3base.com) 최신 리포트
+                <span>⚾</span> 고3 야구 정보 (go3base.com)
               </h2>
-              <p class="text-xs text-slate-400 mt-0.5">고교야구 유망주 분석 및 신인 드래프트 스카우팅 칼럼</p>
+              <p class="text-xs text-slate-400 mt-0.5">고교야구 유망주 기록 및 신인 드래프트 스카우팅 리포트</p>
             </div>
             <div class="flex items-center gap-2">
               <a href="https://www.go3base.com/" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-lg bg-lions text-white text-xs font-semibold hover:bg-lions-light transition">
-                공식 홈페이지 ↗
+                go3base 공식 사이트 ↗
               </a>
             </div>
           </div>
@@ -241,10 +251,35 @@
         </div>
       </section>
 
-      <!-- [TAB 3] 경기움짤/영상 -->
+      <!-- [TAB 3] 경기움짤/영상 & KBO 공식 하이라이트 -->
       <section id="tab-media" class="hidden space-y-6">
         
-        <!-- 3-1. 경기움짤/영상 피드 -->
+        <!-- 3-1. KBO 공식 채널 경기 하이라이트 (패턴 필터 적용) -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-slate-800">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-lg">🎬</span>
+                <h2 class="font-bold text-base sm:text-lg text-white">KBO 공식 경기 하이라이트 (@kbo1982)</h2>
+              </div>
+              <p class="text-[11px] text-slate-400 mt-0.5">
+                '하이라이트｜2026 KBO 리그｜' 및 '하이라이트｜2026 신한 SOL KBO 포스트시즌｜' 포함 영상만 자동 필터링
+              </p>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="flex items-center gap-1.5 text-xs text-sky-400 font-semibold cursor-pointer select-none">
+                <input type="checkbox" id="filter-ss-kbo-hl" onchange="renderKboHighlights()" class="accent-lions-light rounded" />
+                <span>🦁 삼성 경기만 보기</span>
+              </label>
+              <a href="https://youtube.com/@kbo1982/videos" target="_blank" rel="noopener" class="text-xs text-sky-400 hover:underline">
+                KBO 유튜브 ↗
+              </a>
+            </div>
+          </div>
+          <div id="kbo-hl-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5"></div>
+        </div>
+
+        <!-- 3-2. 경기움짤/영상 피드 -->
         <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5">
           <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-800">
             <div class="flex items-center gap-2">
@@ -257,25 +292,11 @@
                 <span>🦁 삼성 경기만 보기</span>
               </label>
               <a href="https://www.fmkorea.com/index.php?mid=baseball&category=741054949" target="_blank" rel="noopener" class="text-xs text-slate-400 hover:text-white">
-                원문 게시판 ↗
+                원문 게시판 열기 ↗
               </a>
             </div>
           </div>
           <div id="game-gif-list" class="grid grid-cols-1 md:grid-cols-2 gap-2.5"></div>
-        </div>
-
-        <!-- 3-2. KBO 공식 채널 경기 하이라이트 -->
-        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5">
-          <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-800">
-            <div class="flex items-center gap-2">
-              <span class="text-lg">🎬</span>
-              <h2 class="font-bold text-base sm:text-lg text-white">KBO 공식 경기 하이라이트 (@kbo1982)</h2>
-            </div>
-            <a href="https://youtube.com/@kbo1982" target="_blank" rel="noopener" class="text-xs text-sky-400 hover:underline">
-              KBO 유튜브 ↗
-            </a>
-          </div>
-          <div id="kbo-hl-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5"></div>
         </div>
       </section>
 
@@ -307,8 +328,8 @@
               <input type="checkbox" id="filter-rumor-votes" onchange="renderCommunityRumors()" class="accent-amber-400 rounded" />
               <span>추천 5+</span>
             </label>
-            <a href="https://www.fmkorea.com/index.php?mid=baseball&category=4392770108" target="_blank" rel="noopener" class="text-[11px] text-slate-400 hover:text-white">
-              더보기 ↗
+            <a href="https://www.fmkorea.com/index.php?mid=baseball&category=4392770108" target="_blank" rel="noopener" class="text-[11px] text-sky-400 hover:underline">
+              게시판 직행 ↗
             </a>
           </div>
         </div>
@@ -332,7 +353,6 @@
           </a>
         </div>
 
-        <!-- 원터치 X 리스트 바로가기 버튼 -->
         <a
           href="https://x.com/i/lists/2122643880348893278?s=20"
           target="_blank"
@@ -342,7 +362,6 @@
           ⚡ 내 야구 기자 X 리스트 실시간 피드 바로 열기
         </a>
 
-        <!-- 개별 기자 퀵 링크 -->
         <div class="grid grid-cols-3 gap-1.5 mb-3">
           <a href="https://x.com/jhpae117" target="_blank" rel="noopener" class="px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-center text-xs font-semibold text-slate-200 transition">
             @배지헌 ↗
@@ -355,7 +374,6 @@
           </a>
         </div>
 
-        <!-- 공식 X List 타임라인 임베드 영역 -->
         <div class="rounded-xl overflow-hidden border border-slate-800 bg-slate-950/60 max-h-[380px] overflow-y-auto">
           <a
             class="twitter-timeline"
@@ -386,73 +404,59 @@
     </div>
   </div>
 
-  <!-- 통합 스크립트 -->
+  <!-- 통합 스크립트: data.json 로드 + 브라우저 직접 RSS/뉴스 실시간 수집 하이브리드 -->
   <script>
+    // KBO 공식 하이라이트 제목 패턴 검사 함수 (전각 ｜ 및 반각 | 모두 호환)
+    function isOfficialKboHighlightTitle(title) {
+      if (!title) return false;
+      const normalized = title.replace(/\|/g, '｜');
+      return (
+        normalized.includes('하이라이트｜2026 KBO 리그｜') ||
+        normalized.includes('하이라이트｜2026 신한 SOL KBO 포스트시즌｜')
+      );
+    }
+
+    function extractBadge(title) {
+      if (!title) return '일반';
+      if (title.includes('단독')) return '단독';
+      if (title.includes('오피셜') || title.includes('공식발표') || title.includes('계약체결')) return '오피셜';
+      if (title.includes('FA') || title.includes('재계약') || title.includes('협상')) return 'FA';
+      if (title.includes('외국인') || title.includes('용병') || title.includes('영입') || title.includes('레예스') || title.includes('디아즈')) return '용병';
+      if (title.includes('트레이드')) return '트레이드';
+      return '일반';
+    }
+
     const STATE = {
       currentTab: 'hub',
       keywordFilter: 'ALL',
       searchQuery: '',
       bookmarks: JSON.parse(localStorage.getItem('lions_radar_bookmarks') || '[]'),
-      lastUpdated: '초기 샘플 데이터 (크롤러 실행 시 자동 갱신)',
-      samsungNews: [
-        {
-          id: 'ss-1',
-          title: '[단독] 삼성 라이온즈, 새 외국인 투수 영입 최종 조율…강속구 우완 낙점 임박',
-          summary: '스토브리그 마운드 보강에 나선 삼성이 최고 155km를 던지는 우완 선발 자원과 세부 옵션을 조율 중이다.',
-          press: '스포티비뉴스',
-          time: '방금 전',
-          badge: '단독',
-          url: 'https://m.sports.naver.com/kbaseball/news?sectionId=kbo&team=SS&sort=latest&isPhoto=N'
-        },
-        {
-          id: 'ss-2',
-          title: '삼성, 내부 FA 단속과 불펜 보강 투트랙 전략…스토브리그 핵심 과제는?',
-          summary: '한국시리즈 진출을 일궈낸 삼성 라이온즈가 내년 시즌 대권 도전을 위해 불펜 뎁스 강화에 집중하고 있다.',
-          press: '엠스플뉴스',
-          time: '18분 전',
-          badge: 'FA',
-          url: 'https://m.sports.naver.com/kbaseball/news?sectionId=kbo&team=SS&sort=latest&isPhoto=N'
-        },
-        {
-          id: 'ss-3',
-          title: '원태인·구자욱·김영웅 코어 라인업 건재…삼성이 그리는 다음 시즌 청사진',
-          summary: '투타 핵심 코어들이 중심을 잡은 가운데 신예 투수들의 마무리캠프 성장세가 눈에 띈다.',
-          press: 'OSEN',
-          time: '42분 전',
-          badge: '일반',
-          url: 'https://m.sports.naver.com/kbaseball/news?sectionId=kbo&team=SS&sort=latest&isPhoto=N'
-        }
-      ],
-      kboNews: [
-        { id: 'kbo-1', title: 'KBO 스토브리그 FA 시장 본격 개막…구단별 눈치싸움 치열', press: '연합뉴스', time: '15분 전', url: 'https://m.sports.naver.com/kbaseball/news' },
-        { id: 'kbo-2', title: '아시아쿼터·외국인 선수 리크루팅 전쟁, 일본·대만까지 넓어진 스카우팅', press: '스포츠춘추', time: '33분 전', url: 'https://m.sports.naver.com/kbaseball/news' }
-      ],
+      lastUpdated: '실시간 연동 중...',
+      samsungNews: [],
+      kboNews: [],
       youtube: {
-        lions_tv: [
-          { video_id: 'dQw4w9WgXcQ', title: '[라이온즈TV] 오키나와 마무리캠프 투수조 불펜 피칭 현장 스케치', published: '2026-11-17', thumbnail: 'https://images.unsplash.com/photo-1508344928928-7165b67de128?w=600&auto=format&fit=crop&q=80', url: 'https://youtube.com/@lionstv1982' },
-          { video_id: 'dQw4w9WgXcQ', title: '[라이온즈TV] 팬들과 함께한 시즌 피날레 비하인드캠', published: '2026-11-16', thumbnail: 'https://images.unsplash.com/photo-1562077772-3bd90403f7f0?w=600&auto=format&fit=crop&q=80', url: 'https://youtube.com/@lionstv1982' }
-        ],
+        lions_tv: [],
         kbo_highlights: [
-          { video_id: 'dQw4w9WgXcQ', title: '[하이라이트] 삼성 vs KIA 주요 명장면 하이라이트 모음', published: '2026-11-15', thumbnail: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&auto=format&fit=crop&q=80', url: 'https://youtube.com/@kbo1982' }
+          {
+            video_id: 'UEmCp0A-EGI',
+            title: '[KT위즈 vs 삼성라이온즈] 11.08(일) KS 5차전 하이라이트｜2026 신한 SOL KBO 포스트시즌｜한국시리즈 5차전｜KBO X TVING',
+            published: '2026-11-08',
+            thumbnail: 'https://i.ytimg.com/vi/UEmCp0A-EGI/hqdefault.jpg',
+            url: 'https://youtu.be/UEmCp0A-EGI'
+          },
+          {
+            video_id: 'h2Wuj_98msA',
+            title: '[두산베어스 vs 삼성라이온즈] 10.3(토) 야구 하이라이트｜2026 KBO 리그｜KBO X TVING',
+            published: '2026-10-03',
+            thumbnail: 'https://i.ytimg.com/vi/h2Wuj_98msA/hqdefault.jpg',
+            url: 'https://youtu.be/h2Wuj_98msA'
+          }
         ],
-        foreign_scouting: [
-          { video_id: 'dQw4w9WgXcQ', title: 'KBO/NPB 타겟 우완 파이어볼러 트리플A 탈삼진 모음 (최고 98마일)', published: '2026-11-16', thumbnail: 'https://images.unsplash.com/photo-1516731415730-0c607149933a?w=600&auto=format&fit=crop&q=80', url: 'https://youtube.com/channel/UCQlxOv_3-nIpA352Afgdglw' }
-        ]
+        foreign_scouting: []
       },
-      communityRumors: [
-        { title: '[찌라시] 삼성 신규 외인 투수 관련 미국 현지 기자 언급 내용 정리', votes: 28, is_samsung: true, url: 'https://www.fmkorea.com/index.php?mid=baseball&category=4392770108' },
-        { title: '이번 스토브리그 불펜 FA 시장 구단별 오퍼 금액대 루머 요약', votes: 14, is_samsung: false, url: 'https://www.fmkorea.com/index.php?mid=baseball&category=4392770108' },
-        { title: '삼성 라이온즈 2군 유망주 파견 리그 성적 및 코칭스태프 평가 썰', votes: 9, is_samsung: true, url: 'https://www.fmkorea.com/index.php?mid=baseball&category=4392770108' }
-      ],
-      gameGifs: [
-        { title: '[움짤] 삼성 김영웅 라팍 우측 담장 넘기는 시원한 풀스윙 홈런 궤적.gif', votes: 42, is_samsung: true, url: 'https://www.fmkorea.com/index.php?mid=baseball&category=741054949' },
-        { title: '[영상] 원태인 완벽한 몸쪽 보더라인 걸치는 체인지업 삼진 장면.gif', votes: 35, is_samsung: true, url: 'https://www.fmkorea.com/index.php?mid=baseball&category=741054949' },
-        { title: '[움짤] 유격수 이재현 역동작 호수비 이후 깔끔한 송구.gif', votes: 19, is_samsung: true, url: 'https://www.fmkorea.com/index.php?mid=baseball&category=741054949' }
-      ],
-      go3base: [
-        { title: '[스카우팅 리포트] KBO 신인드래프트 고교 우완 최대어 구종·구속 분석', url: 'https://www.go3base.com/' },
-        { title: '[아마야구 칼럼] 추계리그에서 두각을 나타낸 고교 거포 유망주 Top 5', url: 'https://www.go3base.com/' }
-      ]
+      communityRumors: [],
+      gameGifs: [],
+      go3base: []
     };
 
     function getBadgeHtml(badge) {
@@ -471,29 +475,37 @@
     function matchesFilter(text, badge = '') {
       const q = STATE.searchQuery.trim().toLowerCase();
       const kw = STATE.keywordFilter;
-      if (q && !text.toLowerCase().includes(q)) return false;
+      if (q && !(text || '').toLowerCase().includes(q)) return false;
       if (kw !== 'ALL') {
         if (badge === kw) return true;
         if (kw === '용병' && (text.includes('외국인') || text.includes('용병') || text.includes('레예스') || text.includes('디아즈'))) return true;
         if (kw === 'FA' && (text.includes('FA') || text.includes('계약') || text.includes('협상'))) return true;
-        return text.includes(kw);
+        return (text || '').includes(kw);
       }
       return true;
     }
 
+    // 1. 삼성 뉴스 렌더링 (필터 결과 없을 시 전체 목록 자동 표시)
     function renderSamsungNews() {
       const container = document.getElementById('samsung-news-list');
       const showSummary = document.getElementById('toggle-summary')?.checked ?? true;
-      const filtered = STATE.samsungNews.filter(item => matchesFilter(item.title + ' ' + (item.summary || ''), item.badge));
+      let list = STATE.samsungNews.filter(item => matchesFilter(item.title + ' ' + (item.summary || ''), item.badge));
+      if (!list.length && STATE.samsungNews.length) list = STATE.samsungNews;
 
-      document.getElementById('ss-news-count').textContent = `${filtered.length}건`;
+      document.getElementById('ss-news-count').textContent = `${list.length}건`;
 
-      if (!filtered.length) {
-        container.innerHTML = `<p class="py-8 text-center text-xs text-slate-500">조건에 맞는 삼성 라이온즈 기사가 없습니다.</p>`;
+      if (!list.length) {
+        container.innerHTML = `
+          <div class="py-6 text-center space-y-2">
+            <p class="text-xs text-slate-400">실시간 삼성 라이온즈 기사를 불러오는 중입니다...</p>
+            <a href="https://m.sports.naver.com/kbaseball/news?sectionId=kbo&team=SS&sort=latest&isPhoto=N" target="_blank" rel="noopener" class="inline-block px-3 py-1.5 rounded-lg bg-lions text-white text-xs font-bold">
+              네이버 삼성 라이온즈 최신 뉴스 바로 열기 ↗
+            </a>
+          </div>`;
         return;
       }
 
-      container.innerHTML = filtered.map(item => {
+      container.innerHTML = list.map(item => {
         const isBookmarked = STATE.bookmarks.some(b => b.url === item.url);
         return `
           <article class="py-3 first:pt-1 last:pb-1 group flex items-start justify-between gap-3">
@@ -506,7 +518,7 @@
               </div>
               ${showSummary && item.summary ? `<p class="text-xs text-slate-400 line-clamp-2 leading-relaxed mb-1.5">${item.summary}</p>` : ''}
               <div class="flex items-center gap-2 text-[11px] text-slate-500">
-                <span class="text-slate-400 font-medium">${item.press || '네이버 스포츠'}</span>
+                <span class="text-slate-400 font-medium">${item.press || '스포츠뉴스'}</span>
                 <span>·</span>
                 <span>${item.time || ''}</span>
               </div>
@@ -523,32 +535,52 @@
       }).join('');
     }
 
+    // 2. KBO 전체 뉴스 렌더링
     function renderKboNews() {
       const container = document.getElementById('kbo-news-list');
-      const filtered = STATE.kboNews.filter(item => matchesFilter(item.title));
-      container.innerHTML = filtered.map(item => `
+      let list = STATE.kboNews.filter(item => matchesFilter(item.title));
+      if (!list.length && STATE.kboNews.length) list = STATE.kboNews;
+
+      if (!list.length) {
+        container.innerHTML = `
+          <div class="py-4 text-center">
+            <a href="https://m.sports.naver.com/kbaseball/news" target="_blank" rel="noopener" class="text-xs text-sky-400 hover:underline">
+              네이버 KBO 야구 최신 뉴스 전체 보기 ↗
+            </a>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = list.map(item => `
         <div class="py-2.5 flex items-center justify-between gap-3">
-          <a href="${item.url}" target="_blank" rel="noopener" class="text-xs sm:text-sm text-slate-300 hover:text-sky-400 truncate flex-1">
+          <a href="${item.url}" target="_blank" rel="noopener" class="text-xs sm:text-sm text-slate-200 hover:text-sky-400 truncate flex-1">
             • ${item.title}
           </a>
-          <span class="text-[11px] text-slate-500 shrink-0">${item.press || ''} · ${item.time || ''}</span>
+          <span class="text-[11px] text-slate-500 shrink-0">${item.press || ''} ${item.time ? '· ' + item.time : ''}</span>
         </div>
       `).join('');
     }
 
-    function renderYoutubeGrid(containerId, videos) {
+    // 3. 유튜브 그리드 렌더링 공통
+    function renderYoutubeGrid(containerId, videos, channelFallbackUrl) {
       const container = document.getElementById(containerId);
       if (!container) return;
-      const filtered = (videos || []).filter(v => matchesFilter(v.title));
+      let list = (videos || []).filter(v => matchesFilter(v.title));
+      if (!list.length && (videos || []).length) list = videos;
 
-      if (!filtered.length) {
-        container.innerHTML = `<p class="col-span-full py-6 text-center text-xs text-slate-500">표시할 영상이 없습니다.</p>`;
+      if (!list.length) {
+        container.innerHTML = `
+          <div class="col-span-full py-6 text-center">
+            <a href="${channelFallbackUrl}" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-slate-800 text-sky-400 text-xs font-semibold hover:bg-slate-700">
+              유튜브 채널 최신 영상 바로 보기 ↗
+            </a>
+          </div>`;
         return;
       }
 
-      container.innerHTML = filtered.map(v => `
+      container.innerHTML = list.map(v => `
         <div class="bg-slate-800/60 border border-slate-800 hover:border-lions-light rounded-xl overflow-hidden group flex flex-col transition">
-          <div class="relative aspect-video bg-slate-950 cursor-pointer overflow-hidden" onclick="openVideoModal('${v.video_id}', '${v.title.replace(/'/g, "\'")}', '${v.url}')">
+          <div class="relative aspect-video bg-slate-950 cursor-pointer overflow-hidden" onclick="openVideoModal('${v.video_id}', '${(v.title || '').replace(/'/g, "\'")}', '${v.url}')">
             <img src="${v.thumbnail}" alt="${v.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" />
             <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 flex items-center justify-center transition">
               <span class="w-10 h-10 rounded-full bg-lions/90 text-white flex items-center justify-center text-sm shadow-lg">▶</span>
@@ -567,40 +599,62 @@
       `).join('');
     }
 
+    // 4. KBO 공식 하이라이트 전용 렌더링
+    function renderKboHighlights() {
+      const onlySamsung = document.getElementById('filter-ss-kbo-hl')?.checked ?? false;
+      const raw = (STATE.youtube.kbo_highlights || []).filter(v => isOfficialKboHighlightTitle(v.title));
+      const filtered = raw.filter(v => !onlySamsung || v.title.includes('삼성'));
+      renderYoutubeGrid('kbo-hl-grid', filtered.length ? filtered : raw, 'https://youtube.com/@kbo1982/videos');
+    }
+
+    // 5. 커뮤니티 찌라시 렌더링
     function renderCommunityRumors() {
       const container = document.getElementById('community-rumor-list');
       const minVotes = document.getElementById('filter-rumor-votes')?.checked ? 5 : 0;
-      const filtered = STATE.communityRumors.filter(r => r.votes >= minVotes && matchesFilter(r.title));
+      let list = STATE.communityRumors.filter(r => (r.votes || 0) >= minVotes && matchesFilter(r.title));
+      if (!list.length && STATE.communityRumors.length) list = STATE.communityRumors;
 
-      if (!filtered.length) {
-        container.innerHTML = `<p class="py-6 text-center text-xs text-slate-500">조건에 맞는 찌라시 글이 없습니다.</p>`;
+      if (!list.length) {
+        container.innerHTML = `
+          <div class="py-6 text-center">
+            <a href="https://www.fmkorea.com/index.php?mid=baseball&category=4392770108" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-slate-800 text-amber-300 text-xs font-semibold hover:bg-slate-700">
+              커뮤니티 찌라시 게시판 바로 열기 ↗
+            </a>
+          </div>`;
         return;
       }
 
-      container.innerHTML = filtered.map(r => `
+      container.innerHTML = list.map(r => `
         <div class="py-2.5 flex items-start justify-between gap-2 group">
           <a href="${r.url}" target="_blank" rel="noopener" class="text-xs sm:text-[13px] leading-snug flex-1 break-keep ${r.is_samsung ? 'text-sky-300 font-semibold' : 'text-slate-300'} group-hover:text-white">
             ${r.is_samsung ? '<span class="inline-block px-1.5 py-0.2 mr-1 rounded bg-lions text-white text-[10px] font-bold">삼성</span>' : ''}
             ${r.title}
           </a>
           <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[11px] font-semibold ${r.votes >= 15 ? 'text-amber-400' : 'text-slate-400'} shrink-0">
-            👍 ${r.votes}
+            👍 ${r.votes || 0}
           </span>
         </div>
       `).join('');
     }
 
+    // 6. 경기움짤/영상 렌더링
     function renderGameGifs() {
       const container = document.getElementById('game-gif-list');
       const onlySamsung = document.getElementById('filter-ss-gif')?.checked ?? false;
-      const filtered = STATE.gameGifs.filter(g => (!onlySamsung || g.is_samsung) && matchesFilter(g.title));
+      let list = STATE.gameGifs.filter(g => (!onlySamsung || g.is_samsung) && matchesFilter(g.title));
+      if (!list.length && STATE.gameGifs.length && !onlySamsung) list = STATE.gameGifs;
 
-      if (!filtered.length) {
-        container.innerHTML = `<p class="col-span-full py-6 text-center text-xs text-slate-500">표시할 경기움짤/영상이 없습니다.</p>`;
+      if (!list.length) {
+        container.innerHTML = `
+          <div class="col-span-full py-6 text-center">
+            <a href="https://www.fmkorea.com/index.php?mid=baseball&category=741054949" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-slate-800 text-emerald-300 text-xs font-semibold hover:bg-slate-700">
+              실시간 경기움짤/영상 게시판 바로 열기 ↗
+            </a>
+          </div>`;
         return;
       }
 
-      container.innerHTML = filtered.map(g => `
+      container.innerHTML = list.map(g => `
         <a href="${g.url}" target="_blank" rel="noopener" class="p-3 rounded-xl border transition flex items-center justify-between gap-3 ${g.is_samsung ? 'bg-lions/15 border-lions-light/50 hover:bg-lions/25' : 'bg-slate-800/50 border-slate-800 hover:border-slate-700'}">
           <div class="min-w-0 flex-1">
             <div class="flex items-center gap-1.5 mb-1">
@@ -608,13 +662,22 @@
             </div>
             <p class="text-xs sm:text-sm font-semibold text-slate-100 truncate">${g.title}</p>
           </div>
-          <span class="text-xs font-bold text-amber-400 shrink-0">👍 ${g.votes}</span>
+          <span class="text-xs font-bold text-amber-400 shrink-0">👍 ${g.votes || 0}</span>
         </a>
       `).join('');
     }
 
+    // 7. 고3야구 렌더링
     function renderGo3base() {
       const go3Container = document.getElementById('go3base-list');
+      if (!STATE.go3base.length) {
+        go3Container.innerHTML = `
+          <a href="https://www.go3base.com/" target="_blank" rel="noopener" class="col-span-full p-4 rounded-xl bg-slate-800/50 border border-slate-800 hover:border-lions-light flex items-center justify-between transition">
+            <span class="text-xs sm:text-sm font-medium text-slate-200">⚾ 고3 야구 스카우팅 리포트 & 유망주 기록실 바로가기 (go3base.com)</span>
+            <span class="text-xs text-sky-400 shrink-0">열기 ↗</span>
+          </a>`;
+        return;
+      }
       go3Container.innerHTML = STATE.go3base.map(item => `
         <a href="${item.url}" target="_blank" rel="noopener" class="p-3 rounded-xl bg-slate-800/50 border border-slate-800 hover:border-lions-light flex items-center justify-between gap-2 transition">
           <span class="text-xs sm:text-sm font-medium text-slate-200 truncate">⚾ ${item.title}</span>
@@ -661,48 +724,142 @@
       document.getElementById('last-sync-time').textContent = STATE.lastUpdated;
       renderSamsungNews();
       renderKboNews();
-      renderYoutubeGrid('lionstv-grid', STATE.youtube.lions_tv);
-      renderYoutubeGrid('foreign-yt-grid', STATE.youtube.foreign_scouting);
-      renderYoutubeGrid('kbo-hl-grid', STATE.youtube.kbo_highlights);
+      renderYoutubeGrid('lionstv-grid', STATE.youtube.lions_tv, 'https://youtube.com/@lionstv1982');
+      renderYoutubeGrid('foreign-yt-grid', STATE.youtube.foreign_scouting, 'https://youtube.com/channel/UCQlxOv_3-nIpA352Afgdglw');
+      renderKboHighlights();
       renderCommunityRumors();
       renderGameGifs();
       renderGo3base();
       renderBookmarks();
     }
 
-    async function loadLiveDashboardData(isManual = false) {
+    // 브라우저에서 직접 실시간 Google News RSS 및 YouTube RSS를 보조 수집하는 함수 (GitHub Actions 대기 시간 없이도 최신 글 즉시 표시)
+    async function fetchClientSideLiveFeeds() {
+      // 1) 삼성 라이온즈 실시간 뉴스 RSS
+      try {
+        const ssRss = encodeURIComponent('https://news.google.com/rss/search?q=' + encodeURIComponent('삼성 라이온즈 야구') + '&hl=ko&gl=KR&ceid=KR:ko');
+        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${ssRss}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.items?.length && !STATE.samsungNews.length) {
+            STATE.samsungNews = data.items.map(i => ({
+              title: i.title.replace(/ - [^-]+$/, ''),
+              summary: '',
+              press: (i.title.match(/ - ([^-]+)$/) || [])[1] || '야구뉴스',
+              time: (i.pubDate || '').slice(11, 16),
+              badge: extractBadge(i.title),
+              url: i.link
+            }));
+          }
+        }
+      } catch (e) {}
+
+      // 2) KBO 야구 종합 실시간 뉴스 RSS
+      try {
+        const kboRss = encodeURIComponent('https://news.google.com/rss/search?q=' + encodeURIComponent('KBO 프로야구') + '&hl=ko&gl=KR&ceid=KR:ko');
+        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${kboRss}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.items?.length && !STATE.kboNews.length) {
+            STATE.kboNews = data.items.slice(0, 10).map(i => ({
+              title: i.title.replace(/ - [^-]+$/, ''),
+              press: (i.title.match(/ - ([^-]+)$/) || [])[1] || 'KBO뉴스',
+              time: (i.pubDate || '').slice(11, 16),
+              url: i.link
+            }));
+          }
+        }
+      } catch (e) {}
+
+      // 3) 유튜브 3개 채널 실시간 RSS
+      const ytChannels = {
+        lions_tv: 'UCKP8I92724p5v571U6i25wA',
+        kbo_highlights: 'UCoVz66yWHzVsXAFG8WhJK9g',
+        foreign_scouting: 'UCQlxOv_3-nIpA352Afgdglw'
+      };
+
+      await Promise.all(Object.entries(ytChannels).map(async ([key, chId]) => {
+        try {
+          const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${chId}`);
+          const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`);
+          if (!res.ok) return;
+          const data = await res.json();
+          if (!data.items?.length) return;
+
+          const parsed = data.items.map(item => {
+            const vid = (item.guid || '').split(':').pop() || (item.link.match(/v=([^&]+)/) || [])[1] || '';
+            return {
+              video_id: vid,
+              title: item.title,
+              published: (item.pubDate || '').slice(0, 10),
+              thumbnail: `https://i.ytimg.com/vi/${vid}/hqdefault.jpg`,
+              url: item.link
+            };
+          });
+
+          if (key === 'kbo_highlights') {
+            const matched = parsed.filter(v => isOfficialKboHighlightTitle(v.title));
+            const merged = [...matched, ...STATE.youtube.kbo_highlights];
+            const seen = new Set();
+            STATE.youtube.kbo_highlights = merged.filter(v => {
+              if (seen.has(v.video_id)) return false;
+              seen.add(v.video_id);
+              return true;
+            });
+          } else if (!STATE.youtube[key]?.length) {
+            STATE.youtube[key] = parsed.slice(0, 8);
+          }
+        } catch (e) {}
+      }));
+    }
+
+    // GitHub Actions의 public/data.json + 브라우저 실시간 수집 통합 실행
+    async function syncAllData(isManual = false) {
       const icon = document.getElementById('refresh-icon');
       if (isManual && icon) icon.classList.add('animate-spin');
 
       try {
         const res = await fetch(`./public/data.json?t=${Date.now()}`, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
+        if (res.ok) {
+          const data = await res.json();
+          if (data.last_updated) STATE.lastUpdated = data.last_updated;
+          if (Array.isArray(data.samsung_news) && data.samsung_news.length) STATE.samsungNews = data.samsung_news;
+          if (Array.isArray(data.kbo_news) && data.kbo_news.length) STATE.kboNews = data.kbo_news;
+          if (data.youtube) {
+            if (data.youtube.lions_tv?.length) STATE.youtube.lions_tv = data.youtube.lions_tv;
+            if (data.youtube.foreign_scouting?.length) STATE.youtube.foreign_scouting = data.youtube.foreign_scouting;
+            if (data.youtube.kbo_highlights?.length) {
+              const valid = data.youtube.kbo_highlights.filter(v => isOfficialKboHighlightTitle(v.title));
+              const merged = [...valid, ...STATE.youtube.kbo_highlights];
+              const seen = new Set();
+              STATE.youtube.kbo_highlights = merged.filter(v => {
+                if (seen.has(v.video_id)) return false;
+                seen.add(v.video_id);
+                return true;
+              });
+            }
+          }
+          const rumors = data.community_rumors || data.fmkorea_rumors;
+          if (Array.isArray(rumors) && rumors.length) STATE.communityRumors = rumors;
 
-        if (data.last_updated) STATE.lastUpdated = data.last_updated;
-        if (Array.isArray(data.samsung_news) && data.samsung_news.length) STATE.samsungNews = data.samsung_news;
-        if (Array.isArray(data.kbo_news) && data.kbo_news.length) STATE.kboNews = data.kbo_news;
-        if (data.youtube) {
-          if (data.youtube.lions_tv?.length) STATE.youtube.lions_tv = data.youtube.lions_tv;
-          if (data.youtube.kbo_highlights?.length) STATE.youtube.kbo_highlights = data.youtube.kbo_highlights;
-          if (data.youtube.foreign_scouting?.length) STATE.youtube.foreign_scouting = data.youtube.foreign_scouting;
+          const gifs = data.game_gifs || data.fmkorea_gifs;
+          if (Array.isArray(gifs) && gifs.length) STATE.gameGifs = gifs;
+
+          if (Array.isArray(data.go3base) && data.go3base.length) STATE.go3base = data.go3base;
         }
-        const rumors = data.community_rumors || data.fmkorea_rumors;
-        if (Array.isArray(rumors) && rumors.length) STATE.communityRumors = rumors;
+      } catch (e) {}
 
-        const gifs = data.game_gifs || data.fmkorea_gifs;
-        if (Array.isArray(gifs) && gifs.length) STATE.gameGifs = gifs;
+      // data.json이 아직 비어있거나 누락된 섹션이 있으면 브라우저가 즉시 실시간 RSS로 보충
+      await fetchClientSideLiveFeeds();
 
-        if (Array.isArray(data.go3base) && data.go3base.length) STATE.go3base = data.go3base;
-
-        document.getElementById('live-status-text').textContent = 'LIVE 연동됨';
-        renderAllSections();
-      } catch (err) {
-        document.getElementById('live-status-text').textContent = '샘플 모드';
-        renderAllSections();
-      } finally {
-        if (isManual && icon) setTimeout(() => icon.classList.remove('animate-spin'), 400);
+      if (STATE.lastUpdated.includes('초기') || STATE.lastUpdated.includes('연동 중')) {
+        STATE.lastUpdated = new Date().toLocaleString('ko-KR');
       }
+
+      document.getElementById('live-status-text').textContent = 'LIVE 연동됨';
+      renderAllSections();
+
+      if (isManual && icon) setTimeout(() => icon.classList.remove('animate-spin'), 400);
     }
 
     function switchTab(tabName) {
@@ -745,7 +902,7 @@
     }
 
     function openVideoModal(videoId, title, fallbackUrl) {
-      if (!videoId || videoId === 'dQw4w9WgXcQ') {
+      if (!videoId) {
         window.open(fallbackUrl, '_blank', 'noopener');
         return;
       }
@@ -776,8 +933,9 @@
         renderAllSections();
       });
 
-      loadLiveDashboardData();
-      setInterval(() => loadLiveDashboardData(false), 180000);
+      renderAllSections();
+      syncAllData(false);
+      setInterval(() => syncAllData(false), 180000);
     });
   </script>
 </body>

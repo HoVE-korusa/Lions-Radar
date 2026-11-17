@@ -14,6 +14,7 @@ DATA_PATH = "public/data.json"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Linux; Android 14; SM-S928N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
     "Accept-Language": "ko-KR,ko;q=0.9",
+    "Referer": "https://m.sports.naver.com/kbaseball/news"
 }
 
 YOUTUBE_CHANNELS = {
@@ -21,6 +22,13 @@ YOUTUBE_CHANNELS = {
     "kbo_highlights": "UCoVz66yWHzVsXAFG8WhJK9g",  # KBO 공식채널
     "foreign_scouting": "UCQlxOv_3-nIpA352Afgdglw" # 아시아리그 용병 하이라이트
 }
+
+def is_official_kbo_highlight(title: str) -> bool:
+    normalized = (title or "").replace("|", "｜")
+    return (
+        "하이라이트｜2026 KBO 리그｜" in normalized
+        or "하이라이트｜2026 신한 SOL KBO 포스트시즌｜" in normalized
+    )
 
 def load_existing_data():
     if os.path.exists(DATA_PATH):
@@ -33,7 +41,26 @@ def load_existing_data():
         "last_updated": "",
         "samsung_news": [],
         "kbo_news": [],
-        "youtube": {"lions_tv": [], "kbo_highlights": [], "foreign_scouting": []},
+        "youtube": {
+            "lions_tv": [],
+            "kbo_highlights": [
+                {
+                    "video_id": "UEmCp0A-EGI",
+                    "title": "[KT위즈 vs 삼성라이온즈] 11.08(일) KS 5차전 하이라이트｜2026 신한 SOL KBO 포스트시즌｜한국시리즈 5차전｜KBO X TVING",
+                    "published": "2026-11-08",
+                    "thumbnail": "https://i.ytimg.com/vi/UEmCp0A-EGI/hqdefault.jpg",
+                    "url": "https://youtu.be/UEmCp0A-EGI"
+                },
+                {
+                    "video_id": "h2Wuj_98msA",
+                    "title": "[두산베어스 vs 삼성라이온즈] 10.3(토) 야구 하이라이트｜2026 KBO 리그｜KBO X TVING",
+                    "published": "2026-10-03",
+                    "thumbnail": "https://i.ytimg.com/vi/h2Wuj_98msA/hqdefault.jpg",
+                    "url": "https://youtu.be/h2Wuj_98msA"
+                }
+            ],
+            "foreign_scouting": []
+        },
         "community_rumors": [],
         "game_gifs": [],
         "go3base": []
@@ -47,44 +74,108 @@ def extract_badge(title: str) -> str:
     if "트레이드" in title: return "트레이드"
     return "일반"
 
-# 1. 네이버 스포츠 뉴스 (삼성 20개 + KBO 전체 7개)
+# 1. 네이버 스포츠 뉴스 수집 (최근 3일 순차 조회 + Google News RSS 이중 안전장치)
 async def fetch_naver_news(client: httpx.AsyncClient, db: dict):
-    today = datetime.now(KST).strftime("%Y%m%d")
-    ss_url = f"https://api-gw.sports.naver.com/news/articles/kbaseball?team=SS&sort=latest&date={today}&page=1&pageSize=20&isPhoto=N"
-    kbo_url = f"https://api-gw.sports.naver.com/news/articles/kbaseball?sort=latest&date={today}&page=1&pageSize=7&isPhoto=N"
+    ss_collected = []
+    kbo_collected = []
 
-    try:
-        ss_res, kbo_res = await asyncio.gather(
-            client.get(ss_url, headers=HEADERS),
-            client.get(kbo_url, headers=HEADERS)
-        )
-        if ss_res.status_code == 200:
-            items = ss_res.json().get("result", {}).get("newsList", [])
-            if items:
-                db["samsung_news"] = [{
-                    "id": i.get("aid"),
-                    "title": i.get("title"),
-                    "summary": i.get("subContent", ""),
-                    "press": i.get("officeName"),
-                    "time": i.get("datetime", "")[-5:],
-                    "badge": extract_badge(i.get("title", "")),
-                    "url": f"https://m.sports.naver.com/kbaseball/article/{i.get('oid')}/{i.get('aid')}"
-                } for i in items]
+    for day_offset in range(3):
+        target_date = (datetime.now(KST) - timedelta(days=day_offset)).strftime("%Y%m%d")
+        ss_url = f"https://api-gw.sports.naver.com/news/articles/kbaseball?sectionId=kbo&team=SS&sort=latest&date={target_date}&page=1&pageSize=20&isPhoto=N"
+        kbo_url = f"https://api-gw.sports.naver.com/news/articles/kbaseball?sectionId=kbo&sort=latest&date={target_date}&page=1&pageSize=15&isPhoto=N"
+        try:
+            ss_res, kbo_res = await asyncio.gather(
+                client.get(ss_url, headers=HEADERS),
+                client.get(kbo_url, headers=HEADERS)
+            )
+            if ss_res.status_code == 200 and not ss_collected:
+                items = (
+                    ss_res.json().get("result", {}).get("newsList")
+                    or ss_res.json().get("result", {}).get("articles")
+                    or []
+                )
+                for i in items:
+                    oid = i.get("oid") or i.get("officeId")
+                    aid = i.get("aid") or i.get("articleId")
+                    title = i.get("title", "")
+                    if oid and aid and title:
+                        ss_collected.append({
+                            "id": aid,
+                            "title": title,
+                            "summary": i.get("subContent", ""),
+                            "press": i.get("officeName", "네이버스포츠"),
+                            "time": (i.get("datetime") or "")[-5:],
+                            "badge": extract_badge(title),
+                            "url": f"https://m.sports.naver.com/kbaseball/article/{oid}/{aid}"
+                        })
+            if kbo_res.status_code == 200 and not kbo_collected:
+                items = (
+                    kbo_res.json().get("result", {}).get("newsList")
+                    or kbo_res.json().get("result", {}).get("articles")
+                    or []
+                )
+                for i in items:
+                    oid = i.get("oid") or i.get("officeId")
+                    aid = i.get("aid") or i.get("articleId")
+                    title = i.get("title", "")
+                    if oid and aid and title:
+                        kbo_collected.append({
+                            "id": aid,
+                            "title": title,
+                            "press": i.get("officeName", "네이버스포츠"),
+                            "time": (i.get("datetime") or "")[-5:],
+                            "url": f"https://m.sports.naver.com/kbaseball/article/{oid}/{aid}"
+                        })
+        except Exception as e:
+            print(f"[Naver API Notice] {e}")
 
-        if kbo_res.status_code == 200:
-            items = kbo_res.json().get("result", {}).get("newsList", [])
-            if items:
-                db["kbo_news"] = [{
-                    "id": i.get("aid"),
-                    "title": i.get("title"),
-                    "press": i.get("officeName"),
-                    "time": i.get("datetime", "")[-5:],
-                    "url": f"https://m.sports.naver.com/kbaseball/article/{i.get('oid')}/{i.get('aid')}"
-                } for i in items[:7]]
-    except Exception as e:
-        print(f"[Naver Error] {e}")
+    # 만약 네이버 게이트웨이가 응답하지 않으면 실시간 뉴스 RSS로 즉시 보충
+    if not ss_collected:
+        try:
+            rss_res = await client.get("https://news.google.com/rss/search?q=%EC%82%BC%EC%84%B1+%EB%9D%BC%EC%9D%B4%EC%98%A8%EC%A6%88+%EC%95%BC%EA%B5%AC&hl=ko&gl=KR&ceid=KR:ko", headers=HEADERS)
+            if rss_res.status_code == 200:
+                feed = feedparser.parse(rss_res.text)
+                for entry in feed.entries[:20]:
+                    raw_title = entry.title
+                    press = raw_title.split(" - ")[-1] if " - " in raw_title else "스포츠뉴스"
+                    clean_title = raw_title.rsplit(" - ", 1)[0] if " - " in raw_title else raw_title
+                    ss_collected.append({
+                        "id": entry.id,
+                        "title": clean_title,
+                        "summary": "",
+                        "press": press,
+                        "time": entry.get("published", "")[17:22],
+                        "badge": extract_badge(clean_title),
+                        "url": entry.link
+                    })
+        except Exception as e:
+            print(f"[SS RSS Error] {e}")
 
-# 2. 유튜브 3개 채널 RSS
+    if not kbo_collected:
+        try:
+            rss_res = await client.get("https://news.google.com/rss/search?q=KBO+%ED%94%84%EB%A1%9C%EC%95%BC%EA%B5%AC&hl=ko&gl=KR&ceid=KR:ko", headers=HEADERS)
+            if rss_res.status_code == 200:
+                feed = feedparser.parse(rss_res.text)
+                for entry in feed.entries[:10]:
+                    raw_title = entry.title
+                    press = raw_title.split(" - ")[-1] if " - " in raw_title else "KBO뉴스"
+                    clean_title = raw_title.rsplit(" - ", 1)[0] if " - " in raw_title else raw_title
+                    kbo_collected.append({
+                        "id": entry.id,
+                        "title": clean_title,
+                        "press": press,
+                        "time": entry.get("published", "")[17:22],
+                        "url": entry.link
+                    })
+        except Exception as e:
+            print(f"[KBO RSS Error] {e}")
+
+    if ss_collected:
+        db["samsung_news"] = ss_collected[:20]
+    if kbo_collected:
+        db["kbo_news"] = kbo_collected[:10]
+
+# 2. 유튜브 3개 채널 RSS (KBO 채널은 지정된 하이라이트 타이틀 포맷만 엄격 필터링)
 async def fetch_youtube(client: httpx.AsyncClient, db: dict):
     for key, ch_id in YOUTUBE_CHANNELS.items():
         url = f"https://www.youtube.com/feeds/videos.xml?channel_id={ch_id}"
@@ -95,7 +186,7 @@ async def fetch_youtube(client: httpx.AsyncClient, db: dict):
                 videos = []
                 for entry in feed.entries:
                     title = entry.title
-                    if key == "kbo_highlights" and not any(k in title for k in ["하이라이트", "HL", "vs"]):
+                    if key == "kbo_highlights" and not is_official_kbo_highlight(title):
                         continue
                     vid = entry.yt_videoid
                     videos.append({
@@ -105,7 +196,17 @@ async def fetch_youtube(client: httpx.AsyncClient, db: dict):
                         "thumbnail": f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
                         "url": entry.link
                     })
-                if videos:
+                if key == "kbo_highlights":
+                    existing = db["youtube"].get("kbo_highlights", [])
+                    merged = videos + existing
+                    seen = set()
+                    deduped = []
+                    for v in merged:
+                        if v["video_id"] not in seen and is_official_kbo_highlight(v["title"]):
+                            seen.add(v["video_id"])
+                            deduped.append(v)
+                    db["youtube"]["kbo_highlights"] = deduped[:12]
+                elif videos:
                     db["youtube"][key] = videos[:8]
         except Exception as e:
             print(f"[YouTube Error - {key}] {e}")
