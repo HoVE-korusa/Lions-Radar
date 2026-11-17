@@ -1,60 +1,262 @@
 {
-  "last_updated": "2026-11-17 20:15:18",
-  "samsung_news": [],
-  "kbo_news": [],
+  "last_updated": "2026-11-17 20:52:02",
+  "samsung_news": [
+    {
+      "id": "CBMiW0FVX3lxTE81WGo4MlBWSm1ZMWZZcHRIVEtJelR6SW05cldBREhIVnlNVnkwZEtad1IyX0txaHlaa21Cd253TDFPZ082WjdoY1VRY04zVVU2VXI4OVpTU0czQ3PSAWBBVV95cUxPT1ktdmN2dDIyNlZob2IxOWNrSDVjUVhlZjlqZWFaQXpza0lwM0dUUDF4UUFwUElYMFpfYVRrRmFDelBXREFPaHZMSHNmN0FWeEV0NXlubUEyREgyS190Ynk",
+      "title": "프로야구 삼성, 우승 공약 지켰다…에버랜드서 팬 2천명과 축제",
+      "summary": "",
+      "press": "연합뉴스",
+      "time": "07:56",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE81WGo4MlBWSm1ZMWZZcHRIVEtJelR6SW05cldBREhIVnlNVnkwZEtad1IyX0txaHlaa21Cd253TDFPZ082WjdoY1VRY04zVVU2VXI4OVpTU0czQ3PSAWBBVV95cUxPT1ktdmN2dDIyNlZob2IxOWNrSDVjUVhlZjlqZWFaQXpza0lwM0dUUDF4UUFwUElYMFpfYVRrRmFDelBXREFPaHZMSHNmN0FWeEV0NXlubUEyREgyS190Ynk?oc=5"
+    },
+    {
+      "id": "CBMiV0FVX3lxTE5saU95UmZHUkF6V2h2ejAxQXZHQTRCbTVuVHNidXY3ZUl1YUZTd1FNa0FlOXREUktpamppYkJPOF9aeVdPNkh3Z2oydTRfWXdYQzBvMzVOcw",
+      "title": "삼성, 한국시리즈 우승 공약 지켰다…팬 2000명과 에버랜드 데이트",
+      "summary": "",
+      "press": "뉴스1",
+      "time": "08:52",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5saU95UmZHUkF6V2h2ejAxQXZHQTRCbTVuVHNidXY3ZUl1YUZTd1FNa0FlOXREUktpamppYkJPOF9aeVdPNkh3Z2oydTRfWXdYQzBvMzVOcw?oc=5"
+    },
+    {
+      "id": "CBMiWkFVX3lxTE4yOW1EX3lNY1hETVRhLWoxbC1yNFU3VG1pejhrNk9SS0ExeDZHYlBBS3NkRjRyU3lpZnkyVFRBRDAwY1FyYkx0dm5pdE01QURUQzdEOTMzMzVsQQ",
+      "title": "삼성웰스토리, 라팍 인기 메뉴 에버랜드서 선봬.. 야구 우승 기념",
+      "summary": "",
+      "press": "파이낸셜뉴스",
+      "time": "00:16",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE4yOW1EX3lNY1hETVRhLWoxbC1yNFU3VG1pejhrNk9SS0ExeDZHYlBBS3NkRjRyU3lpZnkyVFRBRDAwY1FyYkx0dm5pdE01QURUQzdEOTMzMzVsQQ?oc=5"
+    },
+    {
+      "id": "CBMifkFVX3lxTE1fbWNia1pZdUZ6VkFhZ1lHSGFBU013MzREYkJkdzQ3VkFEZVF0LVdqbFg3eV8yMTR4cC1BbmpsamxFU0dpczJFay0wbTVpd1RwOWhkWVN1NFM1Ry1YMnhFWkZDYnhvUFd5R3Z0VzJ4S0ctMEM3NE85YlVZMnRMUQ",
+      "title": "\"삼성이 잡고자 하는 선수 놓친 적 있었던가\" 'FA 최대어' 구자욱·원태인 동반 잔류 희망가…정작 두 후배에겐 \"비밀사진 푼다\" 협박(?) 메시지[용인 현장]",
+      "summary": "",
+      "press": "스포츠조선",
+      "time": "08:43",
+      "badge": "FA",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1fbWNia1pZdUZ6VkFhZ1lHSGFBU013MzREYkJkdzQ3VkFEZVF0LVdqbFg3eV8yMTR4cC1BbmpsamxFU0dpczJFay0wbTVpd1RwOWhkWVN1NFM1Ry1YMnhFWkZDYnhvUFd5R3Z0VzJ4S0ctMEM3NE85YlVZMnRMUQ?oc=5"
+    },
+    {
+      "id": "CBMiYkFVX3lxTFA0TmNZOXEwVGZzbjFwRXhLYzZuaDZKMXVsZ291aFBNbWxUX0J2bmpCTTZFQ0E1YVdzLVVRc0stZEhPaDhXemd5cTItQ1U4NWF5WFgzSTJOb3VsdkhPQ1oxS3BB",
+      "title": "[삼성 오키나와 마무리 캠프] ①`인내는 써도 열매는 달 것` 마무리 훈련 열기 후끈",
+      "summary": "",
+      "press": "매일신문",
+      "time": "02:24",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFA0TmNZOXEwVGZzbjFwRXhLYzZuaDZKMXVsZ291aFBNbWxUX0J2bmpCTTZFQ0E1YVdzLVVRc0stZEhPaDhXemd5cTItQ1U4NWF5WFgzSTJOb3VsdkhPQ1oxS3BB?oc=5"
+    },
+    {
+      "id": "CBMigAFBVV95cUxQMUdtQWNhSlpROFV5czdtaFAwUUx2UFhCSDFYbU0wNnkxU3hQSFA2MVhTQmFvTlFhbmw1bVl3T3lUZTY5UmdPMTVZb01WT2U5ekRvZHRJYUhMbFpIMTRmQzJDaWhPQWV0bUxyMDJ2MkNOMjBMMDVIRC0wSndyWk1nZw",
+      "title": "'FA 대어' 원태인·구자욱 뜬다…막 오른 프로야구 스토브리그",
+      "summary": "",
+      "press": "이데일리",
+      "time": "15:10",
+      "badge": "FA",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQMUdtQWNhSlpROFV5czdtaFAwUUx2UFhCSDFYbU0wNnkxU3hQSFA2MVhTQmFvTlFhbmw1bVl3T3lUZTY5UmdPMTVZb01WT2U5ekRvZHRJYUhMbFpIMTRmQzJDaWhPQWV0bUxyMDJ2MkNOMjBMMDVIRC0wSndyWk1nZw?oc=5"
+    },
+    {
+      "id": "CBMiVEFVX3lxTE82bE5vdlRkbTBIdEkzc2k3eVZqOUtnUnpqaWF1VHJqTWJUYXRidEtxcHZQZzU2azlOYnRrNzNIWWNPczFuX2V6WGsyYkk3dlpqMEtSWA",
+      "title": "2027 프로야구 FA 협상 시작…‘1호 계약’ 주인공은 누구?",
+      "summary": "",
+      "press": "이투데이",
+      "time": "21:35",
+      "badge": "FA",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE82bE5vdlRkbTBIdEkzc2k3eVZqOUtnUnpqaWF1VHJqTWJUYXRidEtxcHZQZzU2azlOYnRrNzNIWWNPczFuX2V6WGsyYkk3dlpqMEtSWA?oc=5"
+    },
+    {
+      "id": "CBMiYkFVX3lxTE1adXZhTnNHRmdxaWtoX0NjZmpPcGFpSGVWUGdQVG9KRktIcUZrLXlSdVBZUmFWaGxTcGdQcndOdlZfVUJCeGsyWFRvcHRRVUk5Yl9HNzNSRFg5TDZzekNyb1NR",
+      "title": "원태인·구자욱 포함 FA 22명 공시…프로야구 `쩐의 전쟁` 시작",
+      "summary": "",
+      "press": "매일신문",
+      "time": "03:12",
+      "badge": "FA",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1adXZhTnNHRmdxaWtoX0NjZmpPcGFpSGVWUGdQVG9KRktIcUZrLXlSdVBZUmFWaGxTcGdQcndOdlZfVUJCeGsyWFRvcHRRVUk5Yl9HNzNSRFg5TDZzekNyb1NR?oc=5"
+    },
+    {
+      "id": "CBMibkFVX3lxTE9nV01QSlg1VjFnc3NETmtTMWxJU3VJb2RVSU13cTNvN0RpeEN3aXNwVEc0NlMwUm9zaTFnTjRpNVBoWkNZZWp5bnpScWFKVTA0OVRBQkNlbWNOUzdfSDVDNE1CV2REVzROQTZtTk9B",
+      "title": "KS 우승 삼성, 역대급 ‘머니게임’ 돌입",
+      "summary": "",
+      "press": "아시아투데이",
+      "time": "01:13",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9nV01QSlg1VjFnc3NETmtTMWxJU3VJb2RVSU13cTNvN0RpeEN3aXNwVEc0NlMwUm9zaTFnTjRpNVBoWkNZZWp5bnpScWFKVTA0OVRBQkNlbWNOUzdfSDVDNE1CV2REVzROQTZtTk9B?oc=5"
+    },
+    {
+      "id": "CBMia0FVX3lxTE55R1BCX0wtSFVmZUJDR0gyNzFBc1ZZQkxTT0hxWktDOVYyTmJLTVp1NXplU3ZZdFlmNlBXOHFCMG9NaW5ZajdqWUZuZFEya3BnQ1hzVjYwQkxlNE5XSkx4ZlpGOWFHVXNzVzBZ",
+      "title": "대구시장이 집무실에서 ‘삼성라이온즈 점퍼’를 입는 이유",
+      "summary": "",
+      "press": "영남일보",
+      "time": "09:49",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE55R1BCX0wtSFVmZUJDR0gyNzFBc1ZZQkxTT0hxWktDOVYyTmJLTVp1NXplU3ZZdFlmNlBXOHFCMG9NaW5ZajdqWUZuZFEya3BnQ1hzVjYwQkxlNE5XSkx4ZlpGOWFHVXNzVzBZ?oc=5"
+    },
+    {
+      "id": "CBMicEFVX3lxTE4yZERzazk3TkxNbnZ2VDZDRXhhZXJmNWMycy1WN0JsbXFodmxQa01IUUdrN3FyMjZ6ZDN5ZExTUC0xMWhkczRlWlFtWFcydWpOLXpWclE1c0Z6aHRSMGtpMFlXY1NTaDkySkZjbUdpaUo",
+      "title": "삼성 벌써 지갑 열었다! 팬 2000명? 규모는 상상 초월…강민호가 전한 우승 뒷이야기는",
+      "summary": "",
+      "press": "SPOTV NEWS",
+      "time": "16:23",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE4yZERzazk3TkxNbnZ2VDZDRXhhZXJmNWMycy1WN0JsbXFodmxQa01IUUdrN3FyMjZ6ZDN5ZExTUC0xMWhkczRlWlFtWFcydWpOLXpWclE1c0Z6aHRSMGtpMFlXY1NTaDkySkZjbUdpaUo?oc=5"
+    },
+    {
+      "id": "CBMiWkFVX3lxTE1ITjAtWFRCdGJhbV9lT1F3dWpPbWctR1ZxS3k5NW5wUGVocGx0WXhxVFp2eFNFdi1oajQ0RFJZVWplOHFtUldISElRWHlwWGs3ZGw1NUR2NzVkdw",
+      "title": "134경기 뛰고 AG 금메달, KS 우승에 APBC까지... 2026년 김지찬은 미친듯이 뛰었다. 정말 잘했다",
+      "summary": "",
+      "press": "파이낸셜뉴스",
+      "time": "01:00",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1ITjAtWFRCdGJhbV9lT1F3dWpPbWctR1ZxS3k5NW5wUGVocGx0WXhxVFp2eFNFdi1oajQ0RFJZVWplOHFtUldISElRWHlwWGs3ZGw1NUR2NzVkdw?oc=5"
+    },
+    {
+      "id": "CBMiYkFVX3lxTFBvRkQ1QmZ2ZWgtZ1h6WkVxLXpoWTBsWVJNTHlubW5MUnVMaFVucjBYeTNfV1d2TmNhTnhmRm1qN2FsSVRSUE5Gb0Y2T0xKWllqOU9seWlDeXluNDhQdElBLVVR",
+      "title": "김현수 떠난 LG의 아쉬움, 삼성도 생각해 볼 문제…구자욱의 가치는 기록이 전부가 아니다",
+      "summary": "",
+      "press": "미주중앙일보",
+      "time": "04:40",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBvRkQ1QmZ2ZWgtZ1h6WkVxLXpoWTBsWVJNTHlubW5MUnVMaFVucjBYeTNfV1d2TmNhTnhmRm1qN2FsSVRSUE5Gb0Y2T0xKWllqOU9seWlDeXluNDhQdElBLVVR?oc=5"
+    },
+    {
+      "id": "CBMifkFVX3lxTE15TXBQc21td29EbERIOXFJNHJHOUdvczlRaGQ0Skhlc2x1MW9iWmEwTHk2QW1DQkJlVHNuaVM2WkVONG90YzNNRndEclVlZjEyWjVYUDRfTjNOSnQ4VGFCS1VuaHN4V2h5QWZxTU02WS1obDh2MnZtMWwybFZWQQ",
+      "title": "삼성이 조금 더 일찍 우승했다면",
+      "summary": "",
+      "press": "오마이스타",
+      "time": "22:18",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE15TXBQc21td29EbERIOXFJNHJHOUdvczlRaGQ0Skhlc2x1MW9iWmEwTHk2QW1DQkJlVHNuaVM2WkVONG90YzNNRndEclVlZjEyWjVYUDRfTjNOSnQ4VGFCS1VuaHN4V2h5QWZxTU02WS1obDh2MnZtMWwybFZWQQ?oc=5"
+    },
+    {
+      "id": "CBMiWkFVX3lxTFA0bkJTc1JGdTdFU204ekNiZVAyS01IWGxSRFp3XzVHOXpYSHhibXJSdXZvYkxxU1gyVGNPR2Z5N2xLOHBlMXNZVG1RdFF6Uy0zSnEwY1RxUlhTUQ",
+      "title": "\"일일 남친 되겠다\"…구자욱, 에버랜드서 포착 '무슨 일?' [덕질경제학]",
+      "summary": "",
+      "press": "한국경제",
+      "time": "10:02",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFA0bkJTc1JGdTdFU204ekNiZVAyS01IWGxSRFp3XzVHOXpYSHhibXJSdXZvYkxxU1gyVGNPR2Z5N2xLOHBlMXNZVG1RdFF6Uy0zSnEwY1RxUlhTUQ?oc=5"
+    },
+    {
+      "id": "CBMia0FVX3lxTE8tV1R1N2JUY2szSHJla05ZYTRtZVMyaXl5aVdDdURpRnBiUmNHdkdWOXBZaEtvUXJERjhGRV9mOE1qZzM5bnRHVmZOeTA3bFhNT0RfOHY5ZWZxSTVRaEZ0U3B0MjBuQ0FoWEpN",
+      "title": "[오키나와의 푸른 땀방울] 삼성 라이온즈의 ‘젊은 피’들, ‘약속의 땅’ 오키나와에서 내년 위해 뛴다",
+      "summary": "",
+      "press": "영남일보",
+      "time": "02:35",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE8tV1R1N2JUY2szSHJla05ZYTRtZVMyaXl5aVdDdURpRnBiUmNHdkdWOXBZaEtvUXJERjhGRV9mOE1qZzM5bnRHVmZOeTA3bFhNT0RfOHY5ZWZxSTVRaEZ0U3B0MjBuQ0FoWEpN?oc=5"
+    },
+    {
+      "id": "CBMickFVX3lxTE5HSWE0SE1zYmZ1dlNaNUtvVmJHcTljbG5VaFdjS1R1aEY4aEZiT0V5amF4VUVZTG9tcjNhUXYtVjJiQTF5RWs0R254dGxsYzE1YzRkd2tkcGx5SEpVZmpxN2lTWHE2VlpJUE5jaE5yeG5aQQ",
+      "title": "삼성라이온즈 12년 만의 V9…삼성물산 패션 ‘12+9=21%’ 할인 축제",
+      "summary": "",
+      "press": "한겨레",
+      "time": "09:16",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5HSWE0SE1zYmZ1dlNaNUtvVmJHcTljbG5VaFdjS1R1aEY4aEZiT0V5amF4VUVZTG9tcjNhUXYtVjJiQTF5RWs0R254dGxsYzE1YzRkd2tkcGx5SEpVZmpxN2lTWHE2VlpJUE5jaE5yeG5aQQ?oc=5"
+    },
+    {
+      "id": "CBMiWkFVX3lxTE5uV1FLZVB1SzB4ZE1ZTk5RUEZaenluTjBwN2Q2NHJKVmpjUlZaekp4Ml9HVjc5SVczdTdUVWt6c3F5ZUNmYTQwWm1famY5eEdYdTEwSGs3dUJaZ9IBX0FVX3lxTE9qZnV6eDViR1NUWXQwWEg0blFhLUcza0h0S1hidzJUZE9nLVV4cFpRSnIta01rWGFPRXhTNm1fSVlsUE1iaWsxMG1lakpfUzhCOXJOOEhHMHZveVd0UFRj",
+      "title": "2년 만에 지켜졌다, 강민호의 ‘우승 공약’…삼성, 에버랜드서 팬들과 ‘KS 우승 파티’",
+      "summary": "",
+      "press": "경향신문",
+      "time": "11:15",
+      "badge": "일반",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5uV1FLZVB1SzB4ZE1ZTk5RUEZaenluTjBwN2Q2NHJKVmpjUlZaekp4Ml9HVjc5SVczdTdUVWt6c3F5ZUNmYTQwWm1famY5eEdYdTEwSGs3dUJaZ9IBX0FVX3lxTE9qZnV6eDViR1NUWXQwWEg0blFhLUcza0h0S1hidzJUZE9nLVV4cFpRSnIta01rWGFPRXhTNm1fSVlsUE1iaWsxMG1lakpfUzhCOXJOOEhHMHZveVd0UFRj?oc=5"
+    },
+    {
+      "id": "CBMiTEFVX3lxTE1aRmhIRE1XRzd6cDRLUWJCYTFabVFJTXZEcDl2ZmFVXzNZVWNnNzJUX1hLQjZsazNKUFBlVThDaFRPdG5UTEVuT1p3Nlg",
+      "title": "FA시장 본격 개장···복잡한 삼성라이온즈, 이번에도 '돌아온 연어 효과'?",
+      "summary": "",
+      "press": "대구MBC",
+      "time": "21:46",
+      "badge": "FA",
+      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE1aRmhIRE1XRzd6cDRLUWJCYTFabVFJTXZEcDl2ZmFVXzNZVWNnNzJUX1hLQjZsazNKUFBlVThDaFRPdG5UTEVuT1p3Nlg?oc=5"
+    },
+    {
+      "id": "CBMiakFVX3lxTE9xekszMFB4S0N4LVVINEdkNjU5UVhrQXZLdjhycGtPV0dqSVluTklmX1lDRFJpNFlpWjB6cjJCVE5JM25xVldKLVBaLS1ZQ3h2QzNYeFNZWnE2bklJR0hhbEliaEN3Rk1zdXfSAW5BVV95cUxQNXB2VUFuSFJHcWhOOVgwcnFuZ2FUazlnV3pGY1pfb2JMcGpYSXBmbFlkeFhDbE1GNzJkYWliTXVDNk40MTVlZjJrY0ZTLTlWcWRRSXhnUHg5MTZaYUM0ZGJLdS16OWhnbFBDVWpLdw",
+      "title": "원태인·구자욱 등 FA 22명, 스토브리그에 떨고 있는 삼성",
+      "summary": "",
+      "press": "중부매일",
+      "time": "00:28",
+      "badge": "FA",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9xekszMFB4S0N4LVVINEdkNjU5UVhrQXZLdjhycGtPV0dqSVluTklmX1lDRFJpNFlpWjB6cjJCVE5JM25xVldKLVBaLS1ZQ3h2QzNYeFNZWnE2bklJR0hhbEliaEN3Rk1zdXfSAW5BVV95cUxQNXB2VUFuSFJHcWhOOVgwcnFuZ2FUazlnV3pGY1pfb2JMcGpYSXBmbFlkeFhDbE1GNzJkYWliTXVDNk40MTVlZjJrY0ZTLTlWcWRRSXhnUHg5MTZaYUM0ZGJLdS16OWhnbFBDVWpLdw?oc=5"
+    }
+  ],
+  "kbo_news": [
+    {
+      "id": "CBMiXEFVX3lxTFBRY3pJX1lIQ2F2T0wxZlFzOF9fU1hQRnVHRnpRUklqOFZpZDZxTkliQy1aTDdVQTZ1azVSdU9xd3pVNmFKNExIeGMyNE1va0tMbXFTUFMzdy1iZTVH",
+      "title": "[프로야구] KBO FA 1호 계약…SSG, '9시의 남자' 오태곤과 3년 11억 계약",
+      "press": "뉴스핌",
+      "time": "00:49",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBRY3pJX1lIQ2F2T0wxZlFzOF9fU1hQRnVHRnpRUklqOFZpZDZxTkliQy1aTDdVQTZ1azVSdU9xd3pVNmFKNExIeGMyNE1va0tMbXFTUFMzdy1iZTVH?oc=5"
+    },
+    {
+      "id": "CBMigwFBVV95cUxNc3RhT2dVRTR6T1oyMEw4Z3JsdXJYdFp5bEpSdGRNazZibGR6aF9lTjZLYndwVktQSHNMcjlSRE4tZTVyQnFLWElqLUlpaEpPd0YxbWg3OWtBeHZXSjNjd2RoZ01POVN1TmxMRU53b3o4SkpiV3hTanA0YlgyUlN4OXdxUQ",
+      "title": "[오피셜] 드디어 FA 시장이 열렸다! KBO, FA 승인 선수 22명 명단 발표…17일부터 계약 체결 교섭 가능",
+      "press": "조선일보",
+      "time": "02:27",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNc3RhT2dVRTR6T1oyMEw4Z3JsdXJYdFp5bEpSdGRNazZibGR6aF9lTjZLYndwVktQSHNMcjlSRE4tZTVyQnFLWElqLUlpaEpPd0YxbWg3OWtBeHZXSjNjd2RoZ01POVN1TmxMRU53b3o4SkpiV3hTanA0YlgyUlN4OXdxUQ?oc=5"
+    },
+    {
+      "id": "CBMiVEFVX3lxTE5vOFVIQWFxczNzcE8zcVM2SVlNNnMtNkRZSXZPTW1kYjJoUmVNNUdxU0tHenNjYkpKUmlkTHhKOF8tVVNXa2NLRjVtd3Uxb1FqZ0k3dg",
+      "title": "프로야구 스토브리그 본격화⋯KBO, 오늘(13일) FA 자격 선수 공시 예정",
+      "press": "이투데이",
+      "time": "00:26",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5vOFVIQWFxczNzcE8zcVM2SVlNNnMtNkRZSXZPTW1kYjJoUmVNNUdxU0tHenNjYkpKUmlkTHhKOF8tVVNXa2NLRjVtd3Uxb1FqZ0k3dg?oc=5"
+    },
+    {
+      "id": "CBMiZ0FVX3lxTE9zdUIzemY5ejB5MlpwZTduVzEtOUhpd0VDQmdmN1RvWVc3SmpaUEdZU3pzSzhXTDgydlBVV05CNjk1MnI1VVF3OHFVRHpIRmVCTjNmdDRRQzBHbFdkUFBmdXZkZV9LdXM",
+      "title": "프로야구 ’쩐의 전쟁’ 시작됐다…KBO, FA 승인 선수 22명 명단 발표",
+      "press": "연합뉴스TV",
+      "time": "02:40",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9zdUIzemY5ejB5MlpwZTduVzEtOUhpd0VDQmdmN1RvWVc3SmpaUEdZU3pzSzhXTDgydlBVV05CNjk1MnI1VVF3OHFVRHpIRmVCTjNmdDRRQzBHbFdkUFBmdXZkZV9LdXM?oc=5"
+    },
+    {
+      "id": "CBMiW0FVX3lxTE84Q2tidTJKQXRkUV9aVXJDNTFnOXI1Mjd5WmtqM2hHWDZmSkUzNktnWUZ6SXgwaHNDRkJqbWRoY3FqVEdMSmp0ZWJqbHMxdmEwT2ZpXzBXS29Ud2c",
+      "title": "프로야구 FA 22명 공시…원태인·구자욱 시장에 나온다",
+      "press": "연합뉴스",
+      "time": "02:39",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE84Q2tidTJKQXRkUV9aVXJDNTFnOXI1Mjd5WmtqM2hHWDZmSkUzNktnWUZ6SXgwaHNDRkJqbWRoY3FqVEdMSmp0ZWJqbHMxdmEwT2ZpXzBXS29Ud2c?oc=5"
+    },
+    {
+      "id": "CBMiZEFVX3lxTE04dXp1ZWtwNG9BNnJ5cmdUWDhIVmQ2N3VTZXpCU0tXd1pXeUM1VHFGSURPbWpza1FBbXB4ZkpUSk9TRkJaNXNMSU5uN1RPZ3VlZzgtZ3ByRm42UVp5XzBBSlhINTc",
+      "title": "2027년 프로야구 FA 시장 승인 선수 협상 시작",
+      "press": "BNT뉴스",
+      "time": "23:00",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE04dXp1ZWtwNG9BNnJ5cmdUWDhIVmQ2N3VTZXpCU0tXd1pXeUM1VHFGSURPbWpza1FBbXB4ZkpUSk9TRkJaNXNMSU5uN1RPZ3VlZzgtZ3ByRm42UVp5XzBBSlhINTc?oc=5"
+    },
+    {
+      "id": "CBMiakFVX3lxTFB1aTFmYnVfZElCQkhVSkRKaktTTFZqU19Zd2VTdE5hWFVWMlU1RWVlRVFjS2g1QVBTSWxmVFlRaERMNkIzNWc5dE5HcmNlUWZGUEotNE5sdTdDeG5UZzN0OHhvaWhzS0xyTVE",
+      "title": "KBO, 2027년 FA 자격 선수 명단 공시",
+      "press": "굿모닝투데이",
+      "time": "23:12",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB1aTFmYnVfZElCQkhVSkRKaktTTFZqU19Zd2VTdE5hWFVWMlU1RWVlRVFjS2g1QVBTSWxmVFlRaERMNkIzNWc5dE5HcmNlUWZGUEotNE5sdTdDeG5UZzN0OHhvaWhzS0xyTVE?oc=5"
+    },
+    {
+      "id": "CBMiVEFVX3lxTE9ZcXVVZVVjbkd2bXJDdG9Pemk3UkhqMmdVRVQ3TEdUTFhzR2pOLXFEMXJCSnhkTGpXZnJmWTktZ1h4ZmJ1QVJVQ3pPWVlQUDFrZzhPNQ",
+      "title": "2027년 프로야구 FA 자격 선수 28명 명단 공개",
+      "press": "이투데이",
+      "time": "06:23",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9ZcXVVZVVjbkd2bXJDdG9Pemk3UkhqMmdVRVQ3TEdUTFhzR2pOLXFEMXJCSnhkTGpXZnJmWTktZ1h4ZmJ1QVJVQ3pPWVlQUDFrZzhPNQ?oc=5"
+    },
+    {
+      "id": "CBMiXEFVX3lxTE8wVlhNSXJCUkRZYWloY0gyUEptVFJPZXhZSEN4bjMxZ1RsckdmdUFWVlNNMHVBalBWOGZiUkVYTFdPQUJUZktUOWhSaW5VTFQwTHROZ3NESzVnQlk5",
+      "title": "[프로야구] KBO, FA 명단 공시…삼성 구자욱·원태인 'A등급', KIA 김호령 'C등급'",
+      "press": "뉴스핌",
+      "time": "07:04",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE8wVlhNSXJCUkRZYWloY0gyUEptVFJPZXhZSEN4bjMxZ1RsckdmdUFWVlNNMHVBalBWOGZiUkVYTFdPQUJUZktUOWhSaW5VTFQwTHROZ3NESzVnQlk5?oc=5"
+    },
+    {
+      "id": "CBMiaEFVX3lxTE1tVVlyV3AxOU85b2t3R04xZkNlV043SGtYdUQ2YWhxLWZFd2FvUWhBZFdsZG9wbHd1WFhnRm54YTFiSlpwZk10QnNHZW83V3A0MkZyTHVKNkFwNkxZUktWUWpFRUlhVFlD",
+      "title": "KBO프로야구 올해도 1000만 관중… 3년 연속 흥행가도",
+      "press": "대경일보",
+      "time": "07:00",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1tVVlyV3AxOU85b2t3R04xZkNlV043SGtYdUQ2YWhxLWZFd2FvUWhBZFdsZG9wbHd1WFhnRm54YTFiSlpwZk10QnNHZW83V3A0MkZyTHVKNkFwNkxZUktWUWpFRUlhVFlD?oc=5"
+    }
+  ],
   "youtube": {
     "lions_tv": [],
-    "kbo_highlights": [
-      {
-        "video_id": "xRONYVPkA4Y",
-        "title": "[대한민국 vs 일본] 11.15(일) APBC 결승전 하이라이트 | 2026 APBC",
-        "published": "2026-11-15",
-        "thumbnail": "https://i.ytimg.com/vi/xRONYVPkA4Y/hqdefault.jpg",
-        "url": "https://www.youtube.com/watch?v=xRONYVPkA4Y"
-      },
-      {
-        "video_id": "usYtiEo4y9w",
-        "title": "[대만 vs 대한민국] 11.14(토) APBC 하이라이트 | 2026 APBC",
-        "published": "2026-11-14",
-        "thumbnail": "https://i.ytimg.com/vi/usYtiEo4y9w/hqdefault.jpg",
-        "url": "https://www.youtube.com/watch?v=usYtiEo4y9w"
-      },
-      {
-        "video_id": "U7ZeuIoihXQ",
-        "title": "대만전 6이닝 9K! 퀄리티 스타트를 기록한 이로운의 탈삼진 모음집! | 대만 vs 대한민국 | 11.14 | 크보모먼트 | 2026 APBC",
-        "published": "2026-11-14",
-        "thumbnail": "https://i.ytimg.com/vi/U7ZeuIoihXQ/hqdefault.jpg",
-        "url": "https://www.youtube.com/watch?v=U7ZeuIoihXQ"
-      },
-      {
-        "video_id": "gAqkYcGeu0A",
-        "title": "대한민국 박정민이 9회 초를 막아내며 승리를 지켜냅니다! | 대만 vs 대한민국 | 11.14 | 크보모먼트 | 2026 APBC",
-        "published": "2026-11-14",
-        "thumbnail": "https://i.ytimg.com/vi/gAqkYcGeu0A/hqdefault.jpg",
-        "url": "https://www.youtube.com/watch?v=gAqkYcGeu0A"
-      },
-      {
-        "video_id": "TEwoBlPbijg",
-        "title": "맞는 순간 알 수 있던 대한민국 문정빈의 솔로 홈런! | 대만 vs 대한민국 | 11.14 | 크보모먼트 | 2026 APBC",
-        "published": "2026-11-14",
-        "thumbnail": "https://i.ytimg.com/vi/TEwoBlPbijg/hqdefault.jpg",
-        "url": "https://www.youtube.com/watch?v=TEwoBlPbijg"
-      },
-      {
-        "video_id": "qYirpO4AEV0",
-        "title": "대한민국 조형우의 2루타와 박재현의 적시 2루타로 한점 더 달아납니다! | 대만 vs 대한민국 | 11.14 | 크보모먼트 | 2026 APBC",
-        "published": "2026-11-14",
-        "thumbnail": "https://i.ytimg.com/vi/qYirpO4AEV0/hqdefault.jpg",
-        "url": "https://www.youtube.com/watch?v=qYirpO4AEV0"
-      },
-      {
-        "video_id": "AXMRQOQjkm8",
-        "title": "다시 리드를 가져오는 대한민국 김도영의 솔로 홈런! | 대만 vs 대한민국 | 11.14 | 크보모먼트 | 2026 APBC",
-        "published": "2026-11-14",
-        "thumbnail": "https://i.ytimg.com/vi/AXMRQOQjkm8/hqdefault.jpg",
-        "url": "https://www.youtube.com/watch?v=AXMRQOQjkm8"
-      }
-    ],
+    "kbo_highlights": [],
     "foreign_scouting": [
       {
         "video_id": "gT_6C-Tu2S8",
